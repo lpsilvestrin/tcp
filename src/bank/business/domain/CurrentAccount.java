@@ -118,7 +118,7 @@ public class CurrentAccount implements Credentials {
 		destinationAccount.depositAmount(amount);
 
 		Transfer transfer = new Transfer(location, this, destinationAccount,
-				amount);
+				amount, null);
 		this.transfers.add(transfer);
 		destinationAccount.transfers.add(transfer);
 

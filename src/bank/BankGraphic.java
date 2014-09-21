@@ -3,7 +3,7 @@
  */
 package bank;
 
-import org.apache.log4j.PropertyConfigurator;
+/* import org.apache.log4j.PropertyConfigurator; */
 
 import bank.business.AccountManagementService;
 import bank.business.domain.ATM;
