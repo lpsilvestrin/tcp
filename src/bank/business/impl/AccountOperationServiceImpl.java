@@ -82,6 +82,10 @@ public class AccountOperationServiceImpl implements AccountOperationService {
 
 		return selectedTransactions;
 	}
+	
+	public List<Transfer> getPendings() {
+		return database.getPendings();
+	}
 
 	@Override
 	public List<Transaction> getStatementByDate(long branch,

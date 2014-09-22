@@ -3,6 +3,7 @@
  */
 package bank.data;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Calendar;
 import java.util.Collection;
@@ -34,7 +35,7 @@ public class Database {
 	private final Map<String, Employee> employees;
 	private final Log log;
 	private final Map<Long, OperationLocation> operationLocations;
-	private List<Transfer> pendingTransfers;
+	private List<Transfer> pendings;
 
 	public Database() {
 		this(true);
@@ -45,6 +46,7 @@ public class Database {
 		this.operationLocations = new HashMap<>();
 		this.employees = new HashMap<>();
 		this.currentAccounts = new HashMap<>();
+		this.pendings = new ArrayList<Transfer>();
 		if (initData) {
 			initData();
 		}
@@ -71,7 +73,7 @@ public class Database {
 	}
 	
 	public List<Transfer> getPendings() {
-		return this.pendingTransfers;
+		return this.pendings;
 	}
 
 	public long getNextCurrentAccountNumber() {
