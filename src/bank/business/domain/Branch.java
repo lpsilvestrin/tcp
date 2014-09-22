@@ -10,6 +10,7 @@ import java.util.List;
 public class Branch extends OperationLocation {
 
 	private List<CurrentAccount> accounts;
+	private List<Transfer> pending;
 	private String name;
 
 	public Branch(long number) {
@@ -24,6 +25,10 @@ public class Branch extends OperationLocation {
 
 	public void addAccount(CurrentAccount currentAccount) {
 		accounts.add(currentAccount);
+	}
+	
+	public void addPending(Transfer transfer) {
+		pending.add(transfer);
 	}
 
 	/**
