@@ -32,7 +32,7 @@ public class PendingAction extends AccountAbstractAction {
 
 
 	private static final long serialVersionUID = 5090183202921964451L;
-/*
+
 	private JDialog dialog;
 
 	public PendingAction(BankGraphicInterface bankInterface,
@@ -45,19 +45,19 @@ public class PendingAction extends AccountAbstractAction {
 		super.putValue(Action.NAME, textManager.getText("action.pending"));
 	}
 		
+/*
 	public void execute() {
 		private Transfer transfer = accountOperationService.tranfer
 				.
 		JList list = new JList(bankInterface.getPendings());
 	}
-	*/
 
-}
-	/*
+*/
+
 	@Override
 	public void execute() throws Exception {
 		// TODO Auto-generated method stub
 
 	}
-	*/
+}
 
