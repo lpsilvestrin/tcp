@@ -3,6 +3,7 @@
  */
 package bank.data;
 
+import java.util.List;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
@@ -21,6 +22,7 @@ import bank.business.domain.CurrentAccountId;
 import bank.business.domain.Employee;
 import bank.business.domain.OperationLocation;
 import bank.business.domain.Transaction;
+import bank.business.domain.Transfer;
 
 /**
  * @author Ingrid Nunes
@@ -32,6 +34,7 @@ public class Database {
 	private final Map<String, Employee> employees;
 	private final Log log;
 	private final Map<Long, OperationLocation> operationLocations;
+	private List<Transfer> pendingTransfers;
 
 	public Database() {
 		this(true);
@@ -65,6 +68,10 @@ public class Database {
 
 	public Employee getEmployee(String username) {
 		return employees.get(username);
+	}
+	
+	public List<Transfer> getPendings() {
+		return this.pendingTransfers;
 	}
 
 	public long getNextCurrentAccountNumber() {
