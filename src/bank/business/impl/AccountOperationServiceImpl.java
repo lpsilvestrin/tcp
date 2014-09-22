@@ -166,7 +166,7 @@ public class AccountOperationServiceImpl implements AccountOperationService {
 		} else {
 			transfer = source.transfer(
 					getOperationLocation(operationLocation), destination, amount, "PENDENTE");
-			
+			this.addPending(transfer);
 		}
 		return transfer;
 	}
