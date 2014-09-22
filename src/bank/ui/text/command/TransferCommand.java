@@ -29,10 +29,12 @@ public class TransferCommand extends Command {
 				.readLong("destination.account.number");
 
 		Double amount = UIUtils.INSTANCE.readDouble("amount");
-
+		
+	
 		Transfer transfer = accountOperationService.transfer(bankInterface
 				.getOperationLocation().getNumber(), srcBranch,
 				srcAccountNumber, dstBranch, dstAccountNumber, amount);
+
 
 		System.out.println(getTextManager().getText(
 				"message.operation.succesfull"));

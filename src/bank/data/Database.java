@@ -72,6 +72,10 @@ public class Database {
 		return employees.get(username);
 	}
 	
+	public void addPending(Transfer pending) {
+		this.pendings.add(pending);
+	}
+	
 	public List<Transfer> getPendings() {
 		return this.pendings;
 	}
@@ -124,14 +128,14 @@ public class Database {
 						ca1.deposit(b1, r.nextInt(10000), r.nextDouble() * 150),
 						r, cal);
 				changeDate(ca1.withdrawal(atm1, r.nextDouble() * 100), r, cal);
-				changeDate(ca1.transfer(atm2, ca2, r.nextDouble() * 100), r,
+				changeDate(ca1.transfer(atm2, ca2, r.nextDouble() * 100, "FINALIZADA"), r,
 						cal);
 
 				changeDate(
 						ca2.deposit(b2, r.nextInt(10000), r.nextDouble() * 150),
 						r, cal);
 				changeDate(ca2.withdrawal(atm2, r.nextDouble() * 100), r, cal);
-				changeDate(ca2.transfer(atm3, ca1, r.nextDouble() * 100), r,
+				changeDate(ca2.transfer(atm3, ca1, r.nextDouble() * 100, "FINALIZADA"), r,
 						cal);
 
 				cal.add(Calendar.MONTH, -1);

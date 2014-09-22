@@ -86,6 +86,10 @@ public class AccountOperationServiceImpl implements AccountOperationService {
 	public List<Transfer> getPendings() {
 		return database.getPendings();
 	}
+	
+	public void addPending(Transfer pending) {
+		database.addPending(pending);
+	}
 
 	@Override
 	public List<Transaction> getStatementByDate(long branch,
@@ -150,11 +154,20 @@ public class AccountOperationServiceImpl implements AccountOperationService {
 	public Transfer transfer(long operationLocation, long srcBranch,
 			long srcAccountNumber, long dstBranch, long dstAccountNumber,
 			double amount) throws BusinessException {
+		Transfer transfer;
 		CurrentAccount source = readCurrentAccount(srcBranch, srcAccountNumber);
 		CurrentAccount destination = readCurrentAccount(dstBranch,
 				dstAccountNumber);
-		Transfer transfer = source.transfer(
-				getOperationLocation(operationLocation), destination, amount);
+		OperationLocation ol = getOperationLocation(operationLocation);
+		
+		if (amount < 5000 || ol instanceof Branch) {
+			transfer = source.transfer(
+					getOperationLocation(operationLocation), destination, amount, "FINALIZADA");
+		} else {
+			transfer = source.transfer(
+					getOperationLocation(operationLocation), destination, amount, "PENDENTE");
+			
+		}
 		return transfer;
 	}
 

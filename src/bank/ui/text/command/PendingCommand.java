@@ -23,8 +23,8 @@ public class PendingCommand extends Command {
 		
 		List<Transfer> pendings = accountOperationService.getPendings();
 		
-		System.out.println(pendings.size());
-		/*
+//		System.out.println(pendings.size());
+		
 		for (int i = 0; i < pendings.size(); i++) {
 			Transfer pending = pendings.get(i);
 			CurrentAccount ac = pending.getAccount();
@@ -33,7 +33,7 @@ public class PendingCommand extends Command {
 			System.out.println(//getTextManager().getText("transfer") + 
 					acId.getNumber());
 										
-		}*/
+		}
 
 	//	Double amount = UIUtils.INSTANCE.readDouble("amount");
 /*

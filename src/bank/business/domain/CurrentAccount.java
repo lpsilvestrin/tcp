@@ -112,20 +112,18 @@ public class CurrentAccount implements Credentials {
 	}
 
 	public Transfer transfer(OperationLocation location,
-			CurrentAccount destinationAccount, double amount)
+			CurrentAccount destinationAccount, double amount, String status)
 			throws BusinessException {
 		Transfer transfer;
 		withdrawalAmount(amount);
 
-		if (amount <= 5000) {
-			destinationAccount.depositAmount(amount);
-			transfer = new Transfer(location, this, destinationAccount,
-					amount, "FINALIZADA");
+		transfer = new Transfer(location, this, destinationAccount,
+				amount, status);
+		if (status == "FINALIZADA") { 
 			destinationAccount.transfers.add(transfer);
-		} else {
-			transfer = new Transfer(location, this, destinationAccount,
-					amount, "PENDENTE");
+			destinationAccount.depositAmount(amount);
 		}
+	
 		this.transfers.add(transfer);
 		
 		return transfer;
