@@ -38,7 +38,7 @@ public interface AccountOperationService {
 			long srcAccountNumber, long dstBranch, long dstAccountNumber,
 			double amount) throws BusinessException;
 	
-	public List<Transfer> getPendings();
+	public List<Transfer> getPendings() throws BusinessException;
 
 	public Withdrawal withdrawal(long operationLocation, long branch,
 			long accountNumber, double amount) throws BusinessException;
