@@ -37,7 +37,7 @@ import bank.business.BusinessException;
 import bank.business.domain.Branch;
 import bank.business.domain.CurrentAccountId;
 import bank.business.domain.Deposit;
-import bank.business.domain.Transaction;
+import bank.business.domain.Transfer;
 import bank.business.domain.Transfer;
 import bank.business.domain.Withdrawal;
 import bank.ui.TextManager;
@@ -73,17 +73,17 @@ public class PendingAction extends AccountAbstractAction {
 		}
 	}
 
-	private class TransactionTableModel extends AbstractTableModel {
+	private class TransferTableModel extends AbstractTableModel {
 
 		private static final long serialVersionUID = 2497950520925208080L;
 
 		private CurrentAccountId id;
-		private List<Transaction> transactions;
+		private List<Transfer> transfers;
 
-		public TransactionTableModel(CurrentAccountId id,
-				List<Transaction> transactions) {
+		public TransferTableModel(CurrentAccountId id,
+				List<Transfer> transfers) {
 			this.id = id;
-			this.transactions = new ArrayList<>(transactions);
+			this.transfers = new ArrayList<>(transfers);
 		}
 
 		@Override
@@ -119,12 +119,12 @@ public class PendingAction extends AccountAbstractAction {
 
 		@Override
 		public int getRowCount() {
-			return transactions.size();
+			return transfers.size();
 		}
 
 		@Override
 		public Object getValueAt(int rowIndex, int columnIndex) {
-			Transaction t = transactions.get(rowIndex);
+			Transfer t = transfers.get(rowIndex);
 			Object val = null;
 			switch (columnIndex) {
 			case 0:
@@ -134,9 +134,7 @@ public class PendingAction extends AccountAbstractAction {
 				val = t.getLocation();
 				break;
 			case 2:
-				if (t instanceof Deposit) {
-					val = ((Deposit) t).getEnvelope();
-				} else if (t instanceof Transfer) {
+				if (t instanceof Transfer) {
 					Transfer transfer = (Transfer) t;
 					StringBuffer sb = new StringBuffer();
 					CurrentAccountId otherId = transfer.getAccount().getId()
@@ -145,16 +143,12 @@ public class PendingAction extends AccountAbstractAction {
 					sb.append("AG ").append(otherId.getBranch().getNumber())
 							.append(" C/C ").append(otherId.getNumber());
 					val = sb.toString();
-				} else if (t instanceof Withdrawal) {
-					val = "";
 				} else {
 					assert false;
 				}
 				break;
 			case 3:
-				if (t instanceof Deposit) {
-					val = ((Deposit) t).getEnvelope();
-				} else if (t instanceof Transfer) {
+				if (t instanceof Transfer) {
 					Transfer transfer = (Transfer) t;
 					StringBuffer sb = new StringBuffer();
 					CurrentAccountId otherId = transfer.getAccount().getId()
@@ -163,24 +157,18 @@ public class PendingAction extends AccountAbstractAction {
 					sb.append("AG ").append(otherId.getBranch().getNumber())
 							.append(" C/C ").append(otherId.getNumber());
 					val = sb.toString();
-				} else if (t instanceof Withdrawal) {
-					val = "";
 				} else {
 					assert false;
 				}
 				break;
 			case 4:
-				if (t instanceof Deposit) {
-					val = "+ " + t.getAmount();
-				} else if (t instanceof Transfer) {
+				if (t instanceof Transfer) {
 					Transfer transfer = (Transfer) t;
 					if (transfer.getAccount().getId().equals(id)) {
 						val = "- " + t.getAmount();
 					} else {
 						val = "+ " + t.getAmount();
 					}
-				} else if (t instanceof Withdrawal) {
-					val = "- " + t.getAmount();
 				} else {
 					assert false;
 				}
@@ -204,7 +192,7 @@ public class PendingAction extends AccountAbstractAction {
 	private JDialog dialog;
 	private JFormattedTextField endDate;
 	private JComboBox<MonthYear> month;
-	private JTable transactions;
+	private JTable transfers;
 	private StatementType type;
 
 	public PendingAction(BankGraphicInterface bankInterface,
@@ -242,39 +230,8 @@ public class PendingAction extends AccountAbstractAction {
 		ButtonGroup btGroup = new ButtonGroup();
 		ActionListener al = new StatementTypeListner();
 
-		// Monthly Statement Panel
-		JRadioButton btM = createRadioButton(StatementType.MONTHLY, btGroup, al);
-		radioBtPanel.add(btM);
-		JPanel monthlyPanel = new JPanel(new FlowLayout(FlowLayout.LEADING));
-		this.month = new JComboBox<>();
-		Calendar cal = Calendar.getInstance();
-		for (int i = 0; i < NUMBER_OF_POSSIBLE_MONTHS; i++) {
-			cal.add(Calendar.MONTH, -1);
-			MonthYear my = new MonthYear();
-			my.month = cal.get(Calendar.MONTH);
-			my.year = cal.get(Calendar.YEAR);
-			month.addItem(my);
-		}
-		monthlyPanel.add(new JLabel(textManager.getText("month") + ":"));
-		monthlyPanel.add(month);
-		cards.add(monthlyPanel, StatementType.MONTHLY.name());
 
-		// Statement by Period Panel
-		JRadioButton btP = createRadioButton(StatementType.PERIOD, btGroup, al);
-		radioBtPanel.add(btP);
-		JPanel periodPanel = new JPanel(new FlowLayout(FlowLayout.LEADING));
-		this.beginDate = new JFormattedTextField(GUIUtils.DATE_FORMAT);
-		beginDate.setColumns(10);
-		beginDate.setToolTipText(GUIUtils.DATE_FORMAT.toPattern());
-		periodPanel.add(new JLabel(textManager.getText("date.initial") + ":"));
-		periodPanel.add(beginDate);
-		this.endDate = new JFormattedTextField(GUIUtils.DATE_FORMAT);
-		endDate.setColumns(10);
-		endDate.setToolTipText(GUIUtils.DATE_FORMAT.toPattern());
-		periodPanel.add(new JLabel(textManager.getText("date.end") + ":"));
-		periodPanel.add(endDate);
-		cards.add(periodPanel, StatementType.PERIOD.name());
-
+	
 		JPanel cardsPanel = new JPanel();
 		cardsPanel.setLayout(new BoxLayout(cardsPanel, BoxLayout.PAGE_AXIS));
 		cardsPanel.add(accountPanel);
@@ -308,14 +265,14 @@ public class PendingAction extends AccountAbstractAction {
 		buttonsPanel.add(okButton);
 
 		// Statement result
-		JPanel transactionsPanel = new JPanel();
-		transactionsPanel
+		JPanel transfersPanel = new JPanel();
+		transfersPanel
 				.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-		transactions = new JTable();
-		JScrollPane scrollPane = new JScrollPane(transactions,
+		transfers = new JTable();
+		JScrollPane scrollPane = new JScrollPane(transfers,
 				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		transactionsPanel.add(scrollPane);
+		transfersPanel.add(scrollPane);
 
 		JPanel mainPanel = new JPanel(new BorderLayout());
 		mainPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
@@ -324,10 +281,9 @@ public class PendingAction extends AccountAbstractAction {
 
 		JPanel pane = new JPanel(new BorderLayout());
 		pane.add(mainPanel, BorderLayout.NORTH);
-		pane.add(transactionsPanel, BorderLayout.CENTER);
+		pane.add(transfersPanel, BorderLayout.CENTER);
 
-		btM.doClick();
-
+		
 		this.dialog = GUIUtils.INSTANCE.createDialog(bankInterface.getFrame(),
 				"action.statement", pane);
 		this.dialog.setVisible(true);
@@ -339,16 +295,13 @@ public class PendingAction extends AccountAbstractAction {
 				return;
 			MonthYear my = (MonthYear) month.getSelectedItem();
 
-			List<Transaction> transactions = accountOperationService
-					.getStatementByMonth(
-							((Number) branch.getValue()).longValue(),
-							((Number) accountNumber.getValue()).longValue(),
-							my.month, my.year);
-			this.transactions.setModel(new TransactionTableModel(
+			List<Transfer> transfers = accountOperationService
+					.getPendings();
+			this.transfers.setModel(new TransferTableModel(
 					new CurrentAccountId(new Branch(
 							((Number) branch.getValue()).longValue()),
 							((Number) accountNumber.getValue()).longValue()),
-					transactions));
+					transfers));
 		} catch (BusinessException be) {
 			GUIUtils.INSTANCE.showMessage(bankInterface.getFrame(),
 					be.getMessage(), be.getArgs(), JOptionPane.WARNING_MESSAGE);
@@ -388,16 +341,13 @@ public class PendingAction extends AccountAbstractAction {
 				begin = cal.getTime();
 			}
 
-			List<Transaction> transactions = accountOperationService
-					.getStatementByDate(
-							((Number) branch.getValue()).longValue(),
-							((Number) accountNumber.getValue()).longValue(),
-							begin, end);
-			this.transactions.setModel(new TransactionTableModel(
+			List<Transfer> transfers = accountOperationService
+					.getPendings();
+			this.transfers.setModel(new TransferTableModel(
 					new CurrentAccountId(new Branch(
 							((Number) branch.getValue()).longValue()),
 							((Number) accountNumber.getValue()).longValue()),
-					transactions));
+					transfers));
 		} catch (BusinessException be) {
 			GUIUtils.INSTANCE.showMessage(bankInterface.getFrame(),
 					be.getMessage(), be.getArgs(), JOptionPane.WARNING_MESSAGE);
