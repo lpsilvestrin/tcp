@@ -131,7 +131,7 @@ public class CurrentAccount implements Credentials {
 	}
 	
 	public Transfer cancelTransfer(long id) throws BusinessException {
-		Transfer transfer;
+		Transfer transfer = null;
 		for (Transfer t : this.transfers) {
 			if(t.getId() == id) {
 				transfer = t;
