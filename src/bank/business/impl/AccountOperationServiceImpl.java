@@ -171,6 +171,13 @@ public class AccountOperationServiceImpl implements AccountOperationService {
 		return transfer;
 	}
 
+	/*
+	@Override
+	public void cancelTransfer(Transfer transfer) {
+		
+	}
+	*/
+	
 	@Override
 	public Withdrawal withdrawal(long operationLocation, long branch,
 			long accountNumber, double amount) throws BusinessException {
