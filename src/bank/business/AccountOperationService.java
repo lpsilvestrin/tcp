@@ -42,7 +42,7 @@ public interface AccountOperationService {
 	
 	public void acceptTransfer(Transfer transfer) throws BusinessException;
 	
-	public List<Transfer> getPendings() throws BusinessException;
+	public List<Transfer> getPendings();
 
 	public Withdrawal withdrawal(long operationLocation, long branch,
 			long accountNumber, double amount) throws BusinessException;
