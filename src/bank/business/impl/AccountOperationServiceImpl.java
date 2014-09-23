@@ -171,12 +171,12 @@ public class AccountOperationServiceImpl implements AccountOperationService {
 		return transfer;
 	}
 
-	/*
+	
 	@Override
-	public void cancelTransfer(Transfer transfer) {
-		
+	public void cancelTransfer(Transfer transfer) throws BusinessException {
+		CurrentAccount ca = transfer.getAccount();
+		ca.cancelTransfer(transfer.getId());
 	}
-	*/
 	
 	@Override
 	public Withdrawal withdrawal(long operationLocation, long branch,
