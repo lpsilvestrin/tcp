@@ -129,7 +129,7 @@ public class CurrentAccount implements Credentials {
 		
 		return transfer;
 	}
-
+	
 	public Withdrawal withdrawal(OperationLocation location, double amount)
 			throws BusinessException {
 		withdrawalAmount(amount);
