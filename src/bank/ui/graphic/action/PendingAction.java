@@ -210,33 +210,14 @@ public class PendingAction extends AccountAbstractAction {
 		dialog = null;
 	}
 
-	private JRadioButton createRadioButton(StatementType type,
-			ButtonGroup btGroup, ActionListener al) {
-		JRadioButton bt = new JRadioButton(textManager.getText(type.name()));
-		bt.setActionCommand(type.name());
-		bt.addActionListener(al);
-		btGroup.add(bt);
-		return bt;
-	}
-
+	
 	@Override
-	public void execute() {
+	public void execute() throws Exception {
 		JPanel accountPanel = new JPanel(new GridLayout(2, 2, 5, 5));
 		initAndAddAccountFields(accountPanel);
 
-		// Cards
-		JPanel radioBtPanel = new JPanel(new FlowLayout(FlowLayout.LEADING));
-		this.cards = new JPanel(new CardLayout());
-		ButtonGroup btGroup = new ButtonGroup();
-		ActionListener al = new StatementTypeListner();
 
 
-	
-		JPanel cardsPanel = new JPanel();
-		cardsPanel.setLayout(new BoxLayout(cardsPanel, BoxLayout.PAGE_AXIS));
-		cardsPanel.add(accountPanel);
-		cardsPanel.add(radioBtPanel);
-		cardsPanel.add(cards);
 
 		// Confirmation Buttons
 		JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
@@ -251,20 +232,27 @@ public class PendingAction extends AccountAbstractAction {
 		JButton okButton = new JButton(textManager.getText("button.ok"));
 		okButton.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+		public void actionPerformed(ActionEvent arg0) {
+				/*
 				switch (type) {
 				case MONTHLY:
-					showMonthlyStatement();
+				*/
+					showPendings();
+					/*
 					break;
 				case PERIOD:
 					showStatementByPeriod();
 					break;
-				}
+				default:
+					showMonthlyStatement();
+					break;
+					
+				}	*/
 			}
 		});
 		buttonsPanel.add(okButton);
 
-		// Statement result
+		// Pendings result
 		JPanel transfersPanel = new JPanel();
 		transfersPanel
 				.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
@@ -276,7 +264,7 @@ public class PendingAction extends AccountAbstractAction {
 
 		JPanel mainPanel = new JPanel(new BorderLayout());
 		mainPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-		mainPanel.add(cardsPanel, BorderLayout.CENTER);
+
 		mainPanel.add(buttonsPanel, BorderLayout.SOUTH);
 
 		JPanel pane = new JPanel(new BorderLayout());
@@ -285,15 +273,12 @@ public class PendingAction extends AccountAbstractAction {
 
 		
 		this.dialog = GUIUtils.INSTANCE.createDialog(bankInterface.getFrame(),
-				"action.statement", pane);
+				"action.pending", pane);
 		this.dialog.setVisible(true);
 	}
 
-	private void showMonthlyStatement() {
+	private void showPendings() {
 		try {
-			if (!checkAccountFields())
-				return;
-			MonthYear my = (MonthYear) month.getSelectedItem();
 
 			List<Transfer> transfers = accountOperationService
 					.getPendings();
@@ -302,57 +287,8 @@ public class PendingAction extends AccountAbstractAction {
 							((Number) branch.getValue()).longValue()),
 							((Number) accountNumber.getValue()).longValue()),
 					transfers));
-		} catch (BusinessException be) {
-			GUIUtils.INSTANCE.showMessage(bankInterface.getFrame(),
-					be.getMessage(), be.getArgs(), JOptionPane.WARNING_MESSAGE);
-			log.warn(be);
-		} catch (Exception exc) {
-			GUIUtils.INSTANCE.handleUnexceptedError(bankInterface.getFrame(),
-					exc);
-		}
-	}
-
-	private void showStatementByPeriod() {
-
-		try {
-			if (!checkAccountFields())
-				return;
-
-			Date begin = (Date) beginDate.getValue();
-			Date end = (Date) endDate.getValue();
-
-			if (begin == null || end == null) {
-				Calendar cal = Calendar.getInstance();
-				cal.set(Calendar.HOUR_OF_DAY,
-						cal.getActualMaximum(Calendar.HOUR_OF_DAY));
-				cal.set(Calendar.MINUTE, cal.getActualMaximum(Calendar.MINUTE));
-				cal.set(Calendar.SECOND, cal.getActualMaximum(Calendar.SECOND));
-				cal.set(Calendar.MILLISECOND,
-						cal.getActualMaximum(Calendar.MILLISECOND));
-				end = cal.getTime();
-
-				cal.add(Calendar.DAY_OF_MONTH, -30);
-				cal.set(Calendar.HOUR_OF_DAY,
-						cal.getActualMinimum(Calendar.HOUR_OF_DAY));
-				cal.set(Calendar.MINUTE, cal.getActualMinimum(Calendar.MINUTE));
-				cal.set(Calendar.SECOND, cal.getActualMinimum(Calendar.SECOND));
-				cal.set(Calendar.MILLISECOND,
-						cal.getActualMinimum(Calendar.MILLISECOND));
-				begin = cal.getTime();
-			}
-
-			List<Transfer> transfers = accountOperationService
-					.getPendings();
-			this.transfers.setModel(new TransferTableModel(
-					new CurrentAccountId(new Branch(
-							((Number) branch.getValue()).longValue()),
-							((Number) accountNumber.getValue()).longValue()),
-					transfers));
-		} catch (BusinessException be) {
-			GUIUtils.INSTANCE.showMessage(bankInterface.getFrame(),
-					be.getMessage(), be.getArgs(), JOptionPane.WARNING_MESSAGE);
-			log.warn(be);
-		} catch (Exception exc) {
+		} 
+		catch (Exception exc) {
 			GUIUtils.INSTANCE.handleUnexceptedError(bankInterface.getFrame(),
 					exc);
 		}
