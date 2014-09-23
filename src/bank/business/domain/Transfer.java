@@ -35,4 +35,8 @@ public class Transfer extends Transaction {
 		this.status = status;
 	}
 	
+	public long getId(){
+		return this.id;
+	}
+	
 }
