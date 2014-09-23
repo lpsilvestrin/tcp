@@ -64,14 +64,6 @@ public class PendingAction extends AccountAbstractAction {
 		MONTHLY, PERIOD;
 	}
 
-	private class StatementTypeListner implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			CardLayout cl = (CardLayout) (cards.getLayout());
-			cl.show(cards, e.getActionCommand());
-			type = StatementType.valueOf(e.getActionCommand());
-		}
-	}
 
 	private class TransferTableModel extends AbstractTableModel {
 
@@ -80,9 +72,8 @@ public class PendingAction extends AccountAbstractAction {
 		private CurrentAccountId id;
 		private List<Transfer> transfers;
 
-		public TransferTableModel(CurrentAccountId id,
+		public TransferTableModel(
 				List<Transfer> transfers) {
-			this.id = id;
 			this.transfers = new ArrayList<>(transfers);
 		}
 
@@ -216,9 +207,6 @@ public class PendingAction extends AccountAbstractAction {
 		JPanel accountPanel = new JPanel(new GridLayout(2, 2, 5, 5));
 		initAndAddAccountFields(accountPanel);
 
-
-
-
 		// Confirmation Buttons
 		JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		JButton cancelButton = new JButton(textManager.getText("button.close"));
@@ -271,6 +259,7 @@ public class PendingAction extends AccountAbstractAction {
 		pane.add(mainPanel, BorderLayout.NORTH);
 		pane.add(transfersPanel, BorderLayout.CENTER);
 
+		showPendings();
 		
 		this.dialog = GUIUtils.INSTANCE.createDialog(bankInterface.getFrame(),
 				"action.pending", pane);
@@ -283,9 +272,6 @@ public class PendingAction extends AccountAbstractAction {
 			List<Transfer> transfers = accountOperationService
 					.getPendings();
 			this.transfers.setModel(new TransferTableModel(
-					new CurrentAccountId(new Branch(
-							((Number) branch.getValue()).longValue()),
-							((Number) accountNumber.getValue()).longValue()),
 					transfers));
 		} 
 		catch (Exception exc) {
