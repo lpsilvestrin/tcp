@@ -176,7 +176,9 @@ public class AccountOperationServiceImpl implements AccountOperationService {
 	public void cancelTransfer(Transfer transfer) throws BusinessException {
 		CurrentAccount ca = transfer.getAccount();
 		ca.cancelTransfer(transfer.getId());
+		this.database.removePending(transfer);
 	}
+	
 	
 	@Override
 	public Withdrawal withdrawal(long operationLocation, long branch,
