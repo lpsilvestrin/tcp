@@ -40,7 +40,7 @@ public interface AccountOperationService {
 	
 	public void cancelTransfer(Transfer transfer) throws BusinessException;
 	
-	//public void acceptTransfer(Transfer transfer) throws BusinessException;
+	public void acceptTransfer(Transfer transfer) throws BusinessException;
 	
 	public List<Transfer> getPendings() throws BusinessException;
 
