@@ -120,11 +120,11 @@ public class CurrentAccount implements Credentials {
 		transfer = new Transfer(location, this, destinationAccount,
 				amount, status);
 		if (status == "FINALIZADA") { 
-			this.transfers.add(transfer);
+			
 			destinationAccount.transfers.add(transfer);
 			destinationAccount.depositAmount(amount);
 		}
-	
+		this.transfers.add(transfer);
 		
 		
 		return transfer;
