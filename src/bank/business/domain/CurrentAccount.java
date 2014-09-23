@@ -145,6 +145,24 @@ public class CurrentAccount implements Credentials {
 		return transfer;
 	}
 	
+	public Transfer acceptTransfer(long id) throws BusinessException {
+		Transfer transfer = null;
+		for (Transfer t : this.transfers) {
+			if(t.getId() == id) {
+				transfer = t;
+			}
+		}
+		
+		if(transfer != null) {
+			CurrentAccount destination;
+			destination = transfer.getDestinationAccount();
+			transfer.setStatus("FINALIZADA");
+			destination.depositAmount(transfer.getAmount());
+			destination.transfers.add(transfer);
+		}		
+		return transfer;
+	}
+	
 	public Withdrawal withdrawal(OperationLocation location, double amount)
 			throws BusinessException {
 		withdrawalAmount(amount);
