@@ -40,6 +40,7 @@ import bank.ui.graphic.GUIUtils;
  */
 public class PendingAction extends AccountAbstractAction {
 
+
 	private class TransferTableModel extends AbstractTableModel {
 
 		private static final long serialVersionUID = 2497950520925208080L;
@@ -181,16 +182,16 @@ public class PendingAction extends AccountAbstractAction {
 
 		// Confirmation Buttons
 		JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		JButton cancelButton = new JButton(textManager.getText("button.close"));
-		cancelButton.addActionListener(new ActionListener() {
+		JButton closeButton = new JButton(textManager.getText("button.close"));
+		closeButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				close();
 			}
 		});
-		buttonsPanel.add(cancelButton);
-		JButton okButton = new JButton(textManager.getText("button.ok"));
-		okButton.addActionListener(new ActionListener() {
+		buttonsPanel.add(closeButton);
+		JButton cancelButton = new JButton(textManager.getText("button.cancel"));
+		cancelButton.addActionListener(new ActionListener() {
 			@Override
 		public void actionPerformed(ActionEvent arg0) {
 
@@ -209,8 +210,30 @@ public class PendingAction extends AccountAbstractAction {
 	
 			}
 		});
-		buttonsPanel.add(okButton);
+		buttonsPanel.add(cancelButton);
 
+		JButton allowButton = new JButton(textManager.getText("button.allow"));
+		allowButton.addActionListener(new ActionListener() {
+			@Override
+		public void actionPerformed(ActionEvent arg0) {
+
+					int row = transfers.getSelectedRow();
+					List<Transfer> transfers = accountOperationService
+							.getPendings();
+					Transfer t = transfers.get(row);
+					try {
+						accountOperationService.acceptTransfer(t);
+					} catch (BusinessException be) {
+						GUIUtils.INSTANCE.showMessage(bankInterface.getFrame(),
+								be.getMessage(), be.getArgs(), JOptionPane.WARNING_MESSAGE);
+						log.warn(be);
+					}
+					showPendings();
+	
+			}
+		});
+		buttonsPanel.add(allowButton);
+		
 		// Pendings result
 		JPanel transfersPanel = new JPanel();
 		transfersPanel
