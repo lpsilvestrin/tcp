@@ -196,6 +196,12 @@ public class PendingAction extends AccountAbstractAction {
 		public void actionPerformed(ActionEvent arg0) {
 
 					int row = transfers.getSelectedRow();
+					if (row < 0) {
+			            GUIUtils.INSTANCE.showMessage(bankInterface.getFrame(), "exception.pendings",
+			            		 new String[] {"exception.pendings"}, JOptionPane.WARNING_MESSAGE);   
+			            return;
+					}
+					
 					List<Transfer> transfers = accountOperationService
 							.getPendings();
 					Transfer t = transfers.get(row);
@@ -218,6 +224,12 @@ public class PendingAction extends AccountAbstractAction {
 		public void actionPerformed(ActionEvent arg0) {
 
 					int row = transfers.getSelectedRow();
+					if (row < 0) {
+			            GUIUtils.INSTANCE.showMessage(bankInterface.getFrame(), "exception.pendings",                     
+			                    new String[] { "exception.pendings" }, JOptionPane.WARNING_MESSAGE);   
+			            return;
+					}
+					
 					List<Transfer> transfers = accountOperationService
 							.getPendings();
 					Transfer t = transfers.get(row);
