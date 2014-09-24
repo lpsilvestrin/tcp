@@ -1,7 +1,6 @@
 package bank.ui.text.command;
 
 import bank.business.AccountOperationService;
-import bank.business.BusinessException;
 import bank.business.domain.Transfer;
 import bank.ui.text.BankTextInterface;
 import bank.ui.text.UIUtils;
@@ -65,8 +64,10 @@ public class PendingCommand extends Command {
 					op = uiUtils.readString(null);
 					if(op.equals("A")) {
 						accountOperationService.acceptTransfer(choosen);
+						System.out.println(getTextManager().getText("message.pendings.cancelled"));
 					} else if(op.equals("C")) {
 						accountOperationService.cancelTransfer(choosen);
+						System.out.println(getTextManager().getText("message.pendings.accepted"));
 					} 
 				} else {
 					System.out.println("Transferência inválida");
