@@ -12,7 +12,8 @@ import java.util.List;
 public class PendingCommand extends Command {
 	
 	private final AccountOperationService accountOperationService;
-
+	int id;
+	
 	public PendingCommand(BankTextInterface bankInterface,
 			AccountOperationService accountOperationService) {
 		super(bankInterface);
@@ -28,54 +29,53 @@ public class PendingCommand extends Command {
 	public void execute() throws Exception {
 		
 		List<Transfer> pendings = accountOperationService.getPendings();
-		
-//		System.out.println(pendings.size());
-		System.out.println("Selecione uma opção: ");
-		
-		for (int i = 0; i < pendings.size(); i++) {
-			/*Transfer pending = pendings.get(i);
-			CurrentAccount ac = pending.getAccount();
-			CurrentAccountId acId = ac.getId();
-			*/
-
-			System.out.println(//getTextManager().getText("transfer") + 
-					i);
-								
-		}
-		
-		String commandKey = null;
+		String op = null;
+		Transfer choosen = null;
 		UIUtils uiUtils = UIUtils.INSTANCE;
 		
-//		public static final String EXIT_CODE = "E";
-//		do {
-			System.out.println();
-			int i;
-//			commandKey = uiUtils.readString(null);
-//			Command command = (Command) actions.get(commandKey);
-			
-			i = uiUtils.readInteger(null);
-			Transfer pending = pendings.get(i);
-			System.out.println(pending.getAmount());
-		//	CurrentAccount ac = pending.getAccount();
-		//	CurrentAccountId acId = ac.getId();
-			
-			
-//		} while (!EXIT_CODE.equals(commandKey));
-		
-
-
-	//	Double amount = UIUtils.INSTANCE.readDouble("amount");
-/*
-		Transfer transfer = accountOperationService.transfer(bankInterface
-				.getOperationLocation().getNumber(), srcBranch,
-				srcAccountNumber, dstBranch, dstAccountNumber, amount);
+		do {
+			if(pendings.size() > 0) {
+	//		System.out.println(pendings.size());
+				pendings = accountOperationService.getPendings();			
 				
-
-		System.out.println(getTextManager().getText(
-				"message.operation.succesfull"));
-		System.out.println(getTextManager().getText("transfer") + ": "
-				+ transfer.getAmount());
-				*/
+				System.out.println("id \t source \t destination \t amount ");
+				
+				int i = 0;
+				
+				for (Transfer p : pendings) {
+					CurrentAccount ac = p.getAccount();
+					CurrentAccountId acId = ac.getId();
+					CurrentAccount dst = p.getDestinationAccount();
+		
+					System.out.println(i + "\t" + acId.getNumber() + "\t" + dst.getId().getNumber() + "\t" + p.getAmount());
+					i++;
+				}
+				
+				System.out.println("Digite o id de alguma transferência (digite O para sair): ");
+												
+				
+				
+				op = uiUtils.readString(null);
+				
+				if(op != "O") {				
+					id = Integer.parseInt(op);
+					choosen = pendings.get(id);
+					
+					if(choosen != null) {
+						System.out.println("Digite A para autorizar e C para cancelar transferência (O para sair): ");
+						op = uiUtils.readString(null);
+						if(op == "A") {
+							accountOperationService.acceptTransfer(choosen);
+						} else if(op == "C") {
+							accountOperationService.cancelTransfer(choosen);
+						} 
+					} else {
+						System.out.println("Número inválido!");
+					}
+				}
+			} else {
+				System.out.println("Nenhuma transferência pendente");
+			}
+		} while (op != "O" && pendings.size() > 0);
 	}
-
 }
