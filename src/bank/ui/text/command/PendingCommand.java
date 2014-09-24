@@ -29,7 +29,7 @@ public class PendingCommand extends Command {
 	public void execute() throws Exception {
 		
 		List<Transfer> pendings = accountOperationService.getPendings();
-		String op = null;
+		String op = "";
 		Transfer choosen = null;
 		UIUtils uiUtils = UIUtils.INSTANCE;
 		
@@ -37,7 +37,7 @@ public class PendingCommand extends Command {
 			if(pendings.size() > 0) {
 	//		System.out.println(pendings.size());
 				pendings = accountOperationService.getPendings();			
-				
+				System.out.println(pendings.size());
 				System.out.println("id \t source \t destination \t amount ");
 				
 				int i = 0;
@@ -51,31 +51,29 @@ public class PendingCommand extends Command {
 					i++;
 				}
 				
-				System.out.println("Digite o id de alguma transferência (digite O para sair): ");
-												
-				
-				
-				op = uiUtils.readString(null);
-				
-				if(op != "O") {				
-					id = Integer.parseInt(op);
+				System.out.println("Digite o id de alguma transferência: ");
+							
+				id = uiUtils.readInteger(null);
+				try {
 					choosen = pendings.get(id);
-					
-					if(choosen != null) {
-						System.out.println("Digite A para autorizar e C para cancelar transferência (O para sair): ");
-						op = uiUtils.readString(null);
-						if(op == "A") {
-							accountOperationService.acceptTransfer(choosen);
-						} else if(op == "C") {
-							accountOperationService.cancelTransfer(choosen);
-						} 
-					} else {
-						System.out.println("Número inválido!");
-					}
+				} catch(Exception e) {
+					choosen = null;					
 				}
+				
+				if(choosen != null) {
+					System.out.println("Digite A para autorizar e C para cancelar transferência (O para sair): ");
+					op = uiUtils.readString(null);
+					if(op.equals("A")) {
+						accountOperationService.acceptTransfer(choosen);
+					} else if(op.equals("C")) {
+						accountOperationService.cancelTransfer(choosen);
+					} 
+				} else {
+					System.out.println("Transferência inválida");
+				}				
 			} else {
 				System.out.println("Nenhuma transferência pendente");
 			}
-		} while (op != "O" && pendings.size() > 0);
+		} while (!op.equals("O") && pendings.size() > 0);
 	}
 }
