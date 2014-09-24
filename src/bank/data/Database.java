@@ -84,6 +84,10 @@ public class Database {
 		return this.pendings;
 	}
 
+	public boolean removePending(Transfer transfer) {
+		return this.pendings.remove(transfer);
+	}
+	
 	public long getNextCurrentAccountNumber() {
 		// I'm assuming that numbers are sequential and no deletions are
 		// performed.

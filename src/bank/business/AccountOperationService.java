@@ -37,10 +37,12 @@ public interface AccountOperationService {
 	public Transfer transfer(long operationLocation, long srcBranch,
 			long srcAccountNumber, long dstBranch, long dstAccountNumber,
 			double amount) throws BusinessException;
+
+	public void cancelTransfer(Transfer transfer) throws BusinessException;
 	
-	public Transfer cancelTransfer(Transfer transfer);
+	public void acceptTransfer(Transfer transfer) throws BusinessException;
 	
-	public List<Transfer> getPendings() throws BusinessException;
+	public List<Transfer> getPendings();
 
 	public Withdrawal withdrawal(long operationLocation, long branch,
 			long accountNumber, double amount) throws BusinessException;

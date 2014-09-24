@@ -43,7 +43,7 @@ public class CurrentAccount implements Credentials {
 
 		return deposit;
 	}
-
+	
 	private void depositAmount(double amount) throws BusinessException {
 		if (!isValidAmount(amount)) {
 			throw new BusinessException("exception.invalid.amount");
@@ -119,23 +119,47 @@ public class CurrentAccount implements Credentials {
 
 		transfer = new Transfer(location, this, destinationAccount,
 				amount, status);
+
 		if (status == "FINALIZADA") { 
-			this.transfers.add(transfer);
+			
 			destinationAccount.transfers.add(transfer);
 			destinationAccount.depositAmount(amount);
 		}
-	
-		//this.transfers.add(transfer);
+		this.transfers.add(transfer);		
 		
 		return transfer;
 	}
 	
-	public Transfer endTransfer(Transfer transfer) throws BusinessException {
-		CurrentAccount da = transfer.getDestinationAccount();
-		double amount = transfer.getAmount();
+	public Transfer cancelTransfer(long id) throws BusinessException {
+		Transfer transfer = null;
+		for (Transfer t : this.transfers) {
+			if(t.getId() == id) {
+				transfer = t;
+			}
+		}
+		if(transfer != null) {
+			transfer.setStatus("CANCELADA");
+			depositAmount(transfer.getAmount());
+		}
 		
-		transfer.setStatus("FINALIZADA");
-		da.depositAmount(amount);
+		return transfer;
+	}
+	
+	public Transfer acceptTransfer(long id) throws BusinessException {
+		Transfer transfer = null;
+		for (Transfer t : this.transfers) {
+			if(t.getId() == id) {
+				transfer = t;
+			}
+		}
+		
+		if(transfer != null) {
+			CurrentAccount destination;
+			destination = transfer.getDestinationAccount();
+			transfer.setStatus("FINALIZADA");
+			destination.depositAmount(transfer.getAmount());
+			destination.transfers.add(transfer);
+		}		
 		return transfer;
 	}
 	

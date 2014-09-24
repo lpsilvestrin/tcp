@@ -176,9 +176,17 @@ public class AccountOperationServiceImpl implements AccountOperationService {
 	}
 	
 	@Override
-	public Transfer endTransfer(int index) {
-		
-		this.removePending(index);
+	public void cancelTransfer(Transfer transfer) throws BusinessException {
+		CurrentAccount ca = transfer.getAccount();
+		ca.cancelTransfer(transfer.getId());
+		this.database.removePending(transfer);
+	}
+	
+	@Override
+	public void acceptTransfer(Transfer transfer) throws BusinessException {
+		CurrentAccount ca = transfer.getAccount();
+		ca.acceptTransfer(transfer.getId());
+		this.database.removePending(transfer);
 	}
 	
 	@Override
