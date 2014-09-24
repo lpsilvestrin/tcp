@@ -4,29 +4,23 @@
 package bank.ui.graphic.action;
 
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
+
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+
 import java.util.List;
 
 import javax.swing.Action;
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.ButtonGroup;
+
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JFormattedTextField;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.KeyStroke;
@@ -34,12 +28,8 @@ import javax.swing.table.AbstractTableModel;
 
 import bank.business.AccountOperationService;
 import bank.business.BusinessException;
-import bank.business.domain.Branch;
 import bank.business.domain.CurrentAccountId;
-import bank.business.domain.Deposit;
 import bank.business.domain.Transfer;
-import bank.business.domain.Transfer;
-import bank.business.domain.Withdrawal;
 import bank.ui.TextManager;
 import bank.ui.graphic.BankGraphicInterface;
 import bank.ui.graphic.GUIUtils;
@@ -49,21 +39,6 @@ import bank.ui.graphic.GUIUtils;
  * 
  */
 public class PendingAction extends AccountAbstractAction {
-
-	private class MonthYear {
-		int month;
-		int year;
-
-		@Override
-		public String toString() {
-			return textManager.getText("month." + month) + "/" + year;
-		}
-	}
-
-	public enum StatementType {
-		MONTHLY, PERIOD;
-	}
-
 
 	private class TransferTableModel extends AbstractTableModel {
 
@@ -174,17 +149,14 @@ public class PendingAction extends AccountAbstractAction {
 
 	}
 
-	private static final int NUMBER_OF_POSSIBLE_MONTHS = 6;
-
+	
 	private static final long serialVersionUID = 5090183202921964451L;
 
-	private JFormattedTextField beginDate;
-	private JPanel cards;
+
 	private JDialog dialog;
-	private JFormattedTextField endDate;
-	private JComboBox<MonthYear> month;
+
 	private JTable transfers;
-	private StatementType type;
+
 
 	public PendingAction(BankGraphicInterface bankInterface,
 			TextManager textManager,
@@ -221,10 +193,7 @@ public class PendingAction extends AccountAbstractAction {
 		okButton.addActionListener(new ActionListener() {
 			@Override
 		public void actionPerformed(ActionEvent arg0) {
-				/*
-				switch (type) {
-				case MONTHLY:
-				*/
+
 					int row = transfers.getSelectedRow();
 					List<Transfer> transfers = accountOperationService
 							.getPendings();
@@ -237,16 +206,7 @@ public class PendingAction extends AccountAbstractAction {
 						log.warn(be);
 					}
 					showPendings();
-					/*
-					break;
-				case PERIOD:
-					showStatementByPeriod();
-					break;
-				default:
-					showMonthlyStatement();
-					break;
-					
-				}	*/
+	
 			}
 		});
 		buttonsPanel.add(okButton);
