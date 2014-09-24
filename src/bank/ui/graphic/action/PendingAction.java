@@ -225,6 +225,17 @@ public class PendingAction extends AccountAbstractAction {
 				switch (type) {
 				case MONTHLY:
 				*/
+					int row = transfers.getSelectedRow();
+					List<Transfer> transfers = accountOperationService
+							.getPendings();
+					Transfer t = transfers.get(row);
+					try {
+						accountOperationService.cancelTransfer(t);
+					} catch (BusinessException be) {
+						GUIUtils.INSTANCE.showMessage(bankInterface.getFrame(),
+								be.getMessage(), be.getArgs(), JOptionPane.WARNING_MESSAGE);
+						log.warn(be);
+					}
 					showPendings();
 					/*
 					break;
