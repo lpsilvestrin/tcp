@@ -120,15 +120,25 @@ public class CurrentAccount implements Credentials {
 		transfer = new Transfer(location, this, destinationAccount,
 				amount, status);
 		if (status == "FINALIZADA") { 
+			this.transfers.add(transfer);
 			destinationAccount.transfers.add(transfer);
 			destinationAccount.depositAmount(amount);
 		}
 	
-		this.transfers.add(transfer);
+		//this.transfers.add(transfer);
 		
 		return transfer;
 	}
-
+	
+	public Transfer endTransfer(Transfer transfer) throws BusinessException {
+		CurrentAccount da = transfer.getDestinationAccount();
+		double amount = transfer.getAmount();
+		
+		transfer.setStatus("FINALIZADA");
+		da.depositAmount(amount);
+		return transfer;
+	}
+	
 	public Withdrawal withdrawal(OperationLocation location, double amount)
 			throws BusinessException {
 		withdrawalAmount(amount);

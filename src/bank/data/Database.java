@@ -76,6 +76,10 @@ public class Database {
 		this.pendings.add(pending);
 	}
 	
+	public void removePending(int index) {
+		this.pendings.remove(index);
+	}
+	
 	public List<Transfer> getPendings() {
 		return this.pendings;
 	}
