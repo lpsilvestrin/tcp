@@ -112,7 +112,7 @@ public class CurrentAccount implements Credentials {
 	}
 
 	public Transfer transfer(OperationLocation location,
-			CurrentAccount destinationAccount, double amount, String status)
+			CurrentAccount destinationAccount, double amount, TransferStatus status)
 			throws BusinessException {
 		Transfer transfer;
 		withdrawalAmount(amount);
@@ -120,7 +120,7 @@ public class CurrentAccount implements Credentials {
 		transfer = new Transfer(location, this, destinationAccount,
 				amount, status);
 
-		if (status == "FINALIZADA") { 
+		if (status == TransferStatus.FINALIZADA) { 
 			
 			destinationAccount.transfers.add(transfer);
 			destinationAccount.depositAmount(amount);
@@ -138,7 +138,7 @@ public class CurrentAccount implements Credentials {
 			}
 		}
 		if(transfer != null) {
-			transfer.setStatus("CANCELADA");
+			transfer.setStatus(TransferStatus.CANCELADA);
 			depositAmount(transfer.getAmount());
 		}
 		
@@ -156,7 +156,7 @@ public class CurrentAccount implements Credentials {
 		if(transfer != null) {
 			CurrentAccount destination;
 			destination = transfer.getDestinationAccount();
-			transfer.setStatus("FINALIZADA");
+			transfer.setStatus(TransferStatus.FINALIZADA);
 			destination.depositAmount(transfer.getAmount());
 			destination.transfers.add(transfer);
 		}		

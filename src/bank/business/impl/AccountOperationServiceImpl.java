@@ -19,6 +19,7 @@ import bank.business.domain.Deposit;
 import bank.business.domain.OperationLocation;
 import bank.business.domain.Transaction;
 import bank.business.domain.Transfer;
+import bank.business.domain.TransferStatus;
 import bank.business.domain.Withdrawal;
 import bank.data.Database;
 
@@ -166,10 +167,10 @@ public class AccountOperationServiceImpl implements AccountOperationService {
 		
 		if (amount < 5000 || ol instanceof Branch) {
 			transfer = source.transfer(
-					getOperationLocation(operationLocation), destination, amount, "FINALIZADA");
+					getOperationLocation(operationLocation), destination, amount, TransferStatus.FINALIZADA);
 		} else {
 			transfer = source.transfer(
-					getOperationLocation(operationLocation), destination, amount, "PENDENTE");
+					getOperationLocation(operationLocation), destination, amount, TransferStatus.PENDENTE);
 			this.addPending(transfer);
 		}
 		return transfer;

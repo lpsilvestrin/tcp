@@ -24,6 +24,7 @@ import bank.business.domain.Employee;
 import bank.business.domain.OperationLocation;
 import bank.business.domain.Transaction;
 import bank.business.domain.Transfer;
+import bank.business.domain.TransferStatus;
 
 /**
  * @author Ingrid Nunes
@@ -136,14 +137,14 @@ public class Database {
 						ca1.deposit(b1, r.nextInt(10000), 8000),//r.nextDouble() * 150),
 						r, cal);
 				changeDate(ca1.withdrawal(atm1, r.nextDouble() * 100), r, cal);
-				changeDate(ca1.transfer(atm2, ca2, r.nextDouble() * 100, "FINALIZADA"), r,
+				changeDate(ca1.transfer(atm2, ca2, r.nextDouble() * 100, TransferStatus.FINALIZADA), r,
 						cal);
 
 				changeDate(
 						ca2.deposit(b2, r.nextInt(10000), r.nextDouble() * 150),
 						r, cal);
 				changeDate(ca2.withdrawal(atm2, r.nextDouble() * 100), r, cal);
-				changeDate(ca2.transfer(atm3, ca1, r.nextDouble() * 100, "FINALIZADA"), r,
+				changeDate(ca2.transfer(atm3, ca1, r.nextDouble() * 100, TransferStatus.FINALIZADA), r,
 						cal);
 
 				cal.add(Calendar.MONTH, -1);
