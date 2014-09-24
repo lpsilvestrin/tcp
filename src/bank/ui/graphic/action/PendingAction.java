@@ -120,7 +120,7 @@ public class PendingAction extends AccountAbstractAction {
 					StringBuffer sb = new StringBuffer();
 					CurrentAccountId otherId = transfer.getAccount().getId()
 							.equals(id) ? transfer.getDestinationAccount()
-							.getId() : transfer.getAccount().getId();
+							.getId() : transfer.getDestinationAccount().getId();
 					sb.append("AG ").append(otherId.getBranch().getNumber())
 							.append(" C/C ").append(otherId.getNumber());
 					val = sb.toString();
@@ -182,7 +182,7 @@ public class PendingAction extends AccountAbstractAction {
 
 		// Confirmation Buttons
 		JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		JButton closeButton = new JButton(textManager.getText("button.close"));
+		JButton closeButton = new JButton(textManager.getText("action.exit"));
 		closeButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -207,6 +207,8 @@ public class PendingAction extends AccountAbstractAction {
 					Transfer t = transfers.get(row);
 					try {
 						accountOperationService.cancelTransfer(t);
+			            GUIUtils.INSTANCE.showMessage(bankInterface.getFrame(), "message.pendings.cancelled",
+			            		 new String[] {"message.pendings.cancelled"}, JOptionPane.WARNING_MESSAGE); 
 					} catch (BusinessException be) {
 						GUIUtils.INSTANCE.showMessage(bankInterface.getFrame(),
 								be.getMessage(), be.getArgs(), JOptionPane.WARNING_MESSAGE);
@@ -235,6 +237,8 @@ public class PendingAction extends AccountAbstractAction {
 					Transfer t = transfers.get(row);
 					try {
 						accountOperationService.acceptTransfer(t);
+					    GUIUtils.INSTANCE.showMessage(bankInterface.getFrame(), "message.pendings.accepted",
+				            		 new String[] {"message.pendings.accepted"}, JOptionPane.WARNING_MESSAGE); 
 					} catch (BusinessException be) {
 						GUIUtils.INSTANCE.showMessage(bankInterface.getFrame(),
 								be.getMessage(), be.getArgs(), JOptionPane.WARNING_MESSAGE);
