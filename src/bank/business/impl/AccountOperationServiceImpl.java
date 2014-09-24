@@ -91,6 +91,10 @@ public class AccountOperationServiceImpl implements AccountOperationService {
 		database.addPending(pending);
 	}
 
+	public void removePending(int index) {
+		database.removePending(index);
+	}
+	
 	@Override
 	public List<Transaction> getStatementByDate(long branch,
 			long accountNumber, Date begin, Date end) throws BusinessException {
@@ -170,7 +174,6 @@ public class AccountOperationServiceImpl implements AccountOperationService {
 		}
 		return transfer;
 	}
-
 	
 	@Override
 	public void cancelTransfer(Transfer transfer) throws BusinessException {
