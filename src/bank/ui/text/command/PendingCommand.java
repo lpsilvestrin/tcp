@@ -35,8 +35,7 @@ public class PendingCommand extends Command {
 		do {
 			if(pendings.size() > 0) {
 	//		System.out.println(pendings.size());
-				pendings = accountOperationService.getPendings();			
-				System.out.println(pendings.size());
+				pendings = accountOperationService.getPendings();
 				System.out.println("id \t source \t destination \t amount ");
 				
 				int i = 0;
@@ -49,19 +48,16 @@ public class PendingCommand extends Command {
 					System.out.println(i + "\t" + acId.getNumber() + "\t" + dst.getId().getNumber() + "\t" + p.getAmount());
 					i++;
 				}
-				
-				System.out.println("Digite o id de alguma transferência: ");
 							
-				id = uiUtils.readInteger(null);
+				id = uiUtils.INSTANCE.readInteger("pending.id");
 				try {
 					choosen = pendings.get(id);
-				} catch(Exception e) {
+				} catch(IndexOutOfBoundsException e) {
 					choosen = null;					
 				}
 				
-				if(choosen != null) {
-					System.out.println("Digite A para autorizar e C para cancelar transferência (O para sair): ");
-					op = uiUtils.readString(null);
+				if(choosen != null) {					
+					op = uiUtils.INSTANCE.readString("message.pendings.choose");
 					if(op.equals("A")) {
 						accountOperationService.acceptTransfer(choosen);
 						System.out.println(getTextManager().getText("message.pendings.cancelled"));
@@ -70,11 +66,12 @@ public class PendingCommand extends Command {
 						System.out.println(getTextManager().getText("message.pendings.accepted"));
 					} 
 				} else {
-					System.out.println("Transferência inválida");
+					System.out.println(getTextManager().getText("message.pendings.invalid"));
 				}				
 			} else {
-				System.out.println("Nenhuma transferência pendente");
+				System.out.println(getTextManager().getText("message.pendings.empty"));
 			}
 		} while (!op.equals("O") && pendings.size() > 0);
 	}
+	
 }
