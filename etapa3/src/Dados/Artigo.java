@@ -2,13 +2,15 @@ package Dados;
 
 import java.util.ArrayList;
 
+import Teste.RevisaoTest;
+
 public class Artigo {
 
 	private int id;
 
 	private String titulo;
 
-	private Pesquisador autor;
+	private int autor;
 
 	private String conferencia;
 
@@ -16,36 +18,39 @@ public class Artigo {
 
 	private ArrayList<Revisao> revisoes;
 
-	private Pesquisador pesquisador;
-
-	private Revisao revisao;
-
-	public Artigo(int id, String titulo, Pesquisador autor, String conferencia, TopicoDePesquisa topicopesquisa) {
-
+	public Artigo(int id, String titulo, int autor, String conferencia, TopicoDePesquisa topicopesquisa) {
+	
+		this.id = id;
+		this.titulo = titulo;
+		this.autor = autor;
+		this.conferencia = conferencia;
+		this.topicopesquisa = topicopesquisa;
+		revisoes = new ArrayList<Revisao>();
+		
 	}
 
 	public int getId() {
-		return 0;
+		return this.id;
 	}
-
+	
 	public String getTitulo() {
-		return null;
+		return this.titulo;
 	}
 
-	public Pesquisador getAutor() {
-		return null;
+	public int getAutor() {
+		return this.autor;
 	}
 
 	public String getConferencia() {
-		return null;
+		return this.conferencia;
 	}
 
 	public TopicoDePesquisa getTopicoPesquisa() {
-		return null;
+		return this.topicopesquisa;
 	}
 
 	public void addRevisao(Revisor revisor, int nota) {
-
+		
 	}
 
 	public boolean verificarAceitacao() {
