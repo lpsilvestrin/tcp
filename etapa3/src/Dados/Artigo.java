@@ -17,6 +17,8 @@ public class Artigo {
 	private TopicoDePesquisa topicopesquisa;
 
 	private ArrayList<Revisao> revisoes;
+	
+	private ArrayList<Revisor> revisores;
 
 	public Artigo(int id, String titulo, int autor, String conferencia, TopicoDePesquisa topicopesquisa) {
 	
@@ -26,6 +28,7 @@ public class Artigo {
 		this.conferencia = conferencia;
 		this.topicopesquisa = topicopesquisa;
 		revisoes = new ArrayList<Revisao>();
+		revisores = new ArrayList<Revisor>();
 		
 	}
 
@@ -50,7 +53,8 @@ public class Artigo {
 	}
 
 	public void addRevisao(Revisor revisor, int nota) {
-		
+		Revisao revisao = new Revisao(revisor, nota);
+		revisoes.add(revisao);
 	}
 
 	public boolean verificarAceitacao() {
@@ -58,7 +62,7 @@ public class Artigo {
 	}
 
 	public void addRevisor(Revisor revisor) {
-
+		this.revisores.add(revisor);
 	}
 
 	public double getMedia() {
