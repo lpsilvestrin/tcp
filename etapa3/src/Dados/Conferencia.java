@@ -1,3 +1,5 @@
+package Dados;
+
 import java.util.ArrayList;
 
 public class Conferencia {
@@ -12,7 +14,7 @@ public class Conferencia {
 
 	private ListagemArtigos listagemArtigos;
 
-	public void Conferencia(String sigla) {
+	public Conferencia(String sigla) {
 
 	}
 

@@ -1,7 +1,6 @@
+package Dados;
+
 import java.util.ArrayList;
-import Dados.Pesquisador;
-import Dados.TopicoDePesquisa;
-import Dados.Revisao;
 
 public class Artigo {
 
@@ -21,7 +20,7 @@ public class Artigo {
 
 	private Revisao revisao;
 
-	public void Artigo(int id, String titulo, Pesquisador autor, String conferencia, TopicoDePesquisa topicopesquisa) {
+	public Artigo(int id, String titulo, Pesquisador autor, String conferencia, TopicoDePesquisa topicopesquisa) {
 
 	}
 

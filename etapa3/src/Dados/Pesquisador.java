@@ -1,3 +1,5 @@
+package Dados;
+
 import java.util.ArrayList;
 
 public class Pesquisador {
@@ -6,15 +8,13 @@ public class Pesquisador {
 
 	protected String nome;
 
-	protected AfiliacaoTeste afiliacao;
+	protected Afiliacao afiliacao;
 
 	protected ArrayList<TopicoDePesquisa> topicospesquisa;
 
 	private TopicoDePesquisa topicoDePesquisa;
 
-	private AfiliacaoTeste afiliacao;
-
-	public void Pesquisador(int id, String nome, AfiliacaoTeste afiliacao) {
+	public Pesquisador(int id, String nome, Afiliacao afiliacao) {
 
 	}
 
@@ -34,7 +34,7 @@ public class Pesquisador {
 		return null;
 	}
 
-	public AfiliacaoTeste getAfiliacao() {
+	public Afiliacao getAfiliacao() {
 		return null;
 	}
 
@@ -42,7 +42,7 @@ public class Pesquisador {
 		return false;
 	}
 
-	public boolean pertenceAfiliacao(AfiliacaoTeste afiliacao) {
+	public boolean pertenceAfiliacao(Afiliacao afiliacao) {
 		return false;
 	}
 

@@ -1,8 +1,10 @@
+package Dados;
+
 public class TopicoDePesquisa {
 
 	private String titulo;
 
-	public void TopicoDePesquisa(String titulo) {
+	public TopicoDePesquisa(String titulo) {
 
 	}
 

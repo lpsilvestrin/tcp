@@ -1,3 +1,5 @@
+package Dados;
+
 import java.util.ArrayList;
 
 public class ListaDeMembros {
@@ -6,11 +8,11 @@ public class ListaDeMembros {
 
 	private MembroDeComite membroDeComite;
 
-	public void ListaDeMembros() {
+	public ListaDeMembros() {
 
 	}
 
-	public void ListaDeMembros(ListaDeMembros lista) {
+	public ListaDeMembros(ListaDeMembros lista) {
 
 	}
 

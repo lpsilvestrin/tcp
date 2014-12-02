@@ -1,3 +1,5 @@
+package Dados;
+
 import java.util.ArrayList;
 
 public class ListagemArtigos {
@@ -12,7 +14,7 @@ public class ListagemArtigos {
 
 	private Artigo artigo;
 
-	public void ListagemArtigos() {
+	public ListagemArtigos() {
 
 	}
 

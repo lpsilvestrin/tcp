@@ -1,8 +1,10 @@
+package Dados;
+
 public class Afiliacao {
 
 	private String nome;
 
-	public void Afiliacao(String nome) {
+	public Afiliacao(String nome) {
 
 	}
 

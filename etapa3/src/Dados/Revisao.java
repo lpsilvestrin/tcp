@@ -1,13 +1,13 @@
+package Dados;
+
+
 public class Revisao {
 
 	private Revisor revisor;
 
 	private int nota;
 
-	private Revisor revisor;
-
-	public void Revisao(Revisor revisor, int nota) {
-
+	public Revisao(Revisor revisor, int nota) {
 	}
 
 	public Revisor getRevisor() {

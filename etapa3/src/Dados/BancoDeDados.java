@@ -1,3 +1,5 @@
+package Dados;
+
 import java.util.ArrayList;
 
 public class BancoDeDados {
@@ -8,7 +10,7 @@ public class BancoDeDados {
 
 	private ArrayList<Artigo> artigos;
 
-	private ArrayList<AfiliacaoTeste> afiliacoes;
+	private ArrayList<Afiliacao> afiliacoes;
 
 	private ArrayList<Revisao> revisoes;
 
