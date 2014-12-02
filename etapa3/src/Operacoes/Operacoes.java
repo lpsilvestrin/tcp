@@ -1,8 +1,14 @@
+package Operacoes;
+
 import java.util.ArrayList;
 
-public class Operacoes {
+import Dados.Artigo;
+import Dados.BancoDeDados;
+import Dados.Conferencia;
+import Dados.ListagemArtigos;
+import Dados.Pesquisador;
 
-	private final BancoDeDados bancodedados;
+public class Operacoes {
 
 	private Conferencia conferencia;
 
