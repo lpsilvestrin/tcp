@@ -1,6 +1,8 @@
 package Dados;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class ListaDeMembros {
 
@@ -27,11 +29,20 @@ public class ListaDeMembros {
 	}
 
 	public void ordenarNumeroDeArtigos() {
-		
+		Collections.sort(this.membrosDeComite, new ComparadorMembrosDeComite());
 	}
 
 	public MembroDeComite getPrimeiroMembro() {
-		return null;
+		return membrosDeComite.get(0);
+	}
+	
+	public class ComparadorMembrosDeComite implements Comparator<MembroDeComite> {
+		@Override
+		public int compare(MembroDeComite membro1, MembroDeComite membro2) {
+			return Integer.compare(membro1.getQtdArtigosAlocados(), membro2.getQtdArtigosAlocados());
+		}
 	}
 
 }
+
+
