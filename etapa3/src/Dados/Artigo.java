@@ -10,7 +10,7 @@ public class Artigo {
 
 	private String titulo;
 
-	private int autor;
+	private Pesquisador autor;
 
 	private String conferencia;
 
@@ -20,7 +20,7 @@ public class Artigo {
 	
 	private ArrayList<Revisor> revisores;
 
-	public Artigo(int id, String titulo, int autor, String conferencia, TopicoDePesquisa topicopesquisa) {
+	public Artigo(int id, String titulo, Pesquisador autor, String conferencia, TopicoDePesquisa topicopesquisa) {
 	
 		this.id = id;
 		this.titulo = titulo;
@@ -40,7 +40,7 @@ public class Artigo {
 		return this.titulo;
 	}
 
-	public int getAutor() {
+	public Pesquisador getAutor() {
 		return this.autor;
 	}
 
@@ -65,6 +65,15 @@ public class Artigo {
 		this.revisores.add(revisor);
 	}
 
+	public boolean ehRevisor(Pesquisador pesquisador) {
+		for (Revisor r : this.revisores) {
+			if (r.equals(pesquisador)) {
+				return true
+			}
+		}
+		return false;
+	}
+	
 	public double getMedia() {
 		return 0;
 	}
