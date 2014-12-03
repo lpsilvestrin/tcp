@@ -20,8 +20,8 @@ public class PesquisadorTest {
 
 	@Before
 	public void setUp() throws Exception {
-		afiliacao1 = new Afiliacao(1,"a");
-		afiliacao2 = new Afiliacao(2,"b");
+		afiliacao1 = new Afiliacao("a");
+		afiliacao2 = new Afiliacao("b");
 		topico1 = new TopicoDePesquisa("Topico 1");
 		topico2 = new TopicoDePesquisa("Topico 2");
 	}
