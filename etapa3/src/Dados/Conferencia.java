@@ -15,19 +15,19 @@ public class Conferencia {
 	private ListagemArtigos listagemArtigos;
 
 	public Conferencia(String sigla) {
-
+		this.sigla = sigla;
 	}
 
 	public void addMembroComite(MembroDeComite membro) {
-
+		
 	}
 
 	public String getSigla() {
-		return null;
+		return this.sigla;
 	}
 
 	public ArrayList<MembroDeComite> getMembrosComite() {
-		return null;
+		return membroscomite.getMembros();
 	}
 
 	public ArrayList<Artigo> getArtigosAceitos() {
@@ -35,7 +35,7 @@ public class Conferencia {
 	}
 
 	public void getMembroDeComite(int id) {
-
+		
 	}
 
 	public void alocarRevisores(int numrevisores) {

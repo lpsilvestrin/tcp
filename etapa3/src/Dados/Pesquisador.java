@@ -2,6 +2,11 @@ package Dados;
 
 import java.util.ArrayList;
 
+import Teste.TopicoDePesquisaTest;
+
+import com.sun.java.swing.plaf.motif.MotifBorders.ToggleButtonBorder;
+
+
 public class Pesquisador {
 
 	protected int id;
@@ -12,14 +17,15 @@ public class Pesquisador {
 
 	protected ArrayList<TopicoDePesquisa> topicospesquisa;
 
-	private TopicoDePesquisa topicoDePesquisa;
-
 	public Pesquisador(int id, String nome, Afiliacao afiliacao) {
-
+		this.id = id;
+		this.nome = nome;
+		this.afiliacao = afiliacao;
+		this.topicospesquisa = new ArrayList<TopicoDePesquisa>();
 	}
 
 	public void addTopicoPesquisa(TopicoDePesquisa topicopesquisa) {
-
+		this.topicospesquisa.add(topicopesquisa);
 	}
 
 	public boolean possuiTopicoPesquisa(TopicoDePesquisa topicopesquisa) {
@@ -27,23 +33,31 @@ public class Pesquisador {
 	}
 
 	public int getId() {
-		return 0;
+		return this.id;
 	}
 
 	public String getNome() {
-		return null;
+		return this.nome;
 	}
 
 	public Afiliacao getAfiliacao() {
-		return null;
+		return this.afiliacao;
 	}
 
 	public boolean isEqual(Pesquisador pesquisador) {
-		return false;
+		if (this.id == pesquisador.getId()) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public boolean pertenceAfiliacao(Afiliacao afiliacao) {
-		return false;
+		if (afiliacao.getNome().equals(this.afiliacao.getNome())) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }
