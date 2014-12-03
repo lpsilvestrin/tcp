@@ -1,13 +1,13 @@
 package Dados;
 
 import java.util.ArrayList;
-import Artigo
-import Conferencia
-import ListaDeMembros
-import MembroDeComite
-import Pesquisador
-import Revisao
-import Revisor
+import Artigo;
+import Conferencia;
+import ListaDeMembros;
+import MembroDeComite;
+import Pesquisador;
+import Revisao;
+import Revisor;
 
 public class BancoDeDados {
 	
