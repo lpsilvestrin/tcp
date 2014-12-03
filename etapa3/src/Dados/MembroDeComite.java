@@ -6,14 +6,15 @@ public class MembroDeComite extends Pesquisador {
 
 	public MembroDeComite(int id, String nome, Afiliacao afiliacao) {
 		super(id, nome, afiliacao);
+		this.qtdArtigosAlocados = 0;
 	}
 
 	public void addQtdArtigosAlocados() {
-
+		this.qtdArtigosAlocados += 1;
 	}
 
 	public int getQtdArtigosAlocados() {
-		return 0;
+		return this.qtdArtigosAlocados;
 	}
 
 }
