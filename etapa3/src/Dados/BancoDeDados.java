@@ -30,7 +30,7 @@ public class BancoDeDados {
 		return this.conferencias;
 	}
 	
-	public ArrayList<Aritgo> getArtigos() {
+	public ArrayList<Artigo> getArtigos() {
 		return this.artigos;
 	}
 	
