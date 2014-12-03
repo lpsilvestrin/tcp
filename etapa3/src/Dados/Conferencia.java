@@ -10,16 +10,14 @@ public class Conferencia {
 
 	private ListagemArtigos alocacao;
 
-	private ListaDeMembros listaDeMembros;
-
-	private ListagemArtigos listagemArtigos;
-
 	public Conferencia(String sigla) {
 		this.sigla = sigla;
+		membroscomite = new ListaDeMembros();
+		alocacao = new ListagemArtigos();
 	}
 
 	public void addMembroComite(MembroDeComite membro) {
-		
+		membroscomite.addMembro(membro);
 	}
 
 	public String getSigla() {
@@ -34,12 +32,19 @@ public class Conferencia {
 		return null;
 	}
 
-	public void getMembroDeComite(int id) {
+	public MembroDeComite getMembroDeComite(int id) {
+		ArrayList<MembroDeComite> membros = getMembrosComite();
+		for (MembroDeComite m : membros) {
+			if (m.getId() == id) {
+				return m;
+			}
+		}
 		
+		return null;
 	}
 
 	public void alocarRevisores(int numrevisores) {
-
+		alocacao.alocarRevisores(membroscomite);
 	}
 
 	public boolean alocacaoRealizada() {
