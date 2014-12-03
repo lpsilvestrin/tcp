@@ -25,13 +25,28 @@ public class ListagemArtigos {
 	public void alocarRevisores(ListaDeMembros revisores) {
 		
 		Artigo artigo = this.getArtigoMenorID();
-		ListaDeMembros revisoresAptos = new ListaDeMembros();
-		for (MembroDeComite membro : revisores.getMembros()) {
-			if (membro.getId() != artigo.getAutor()) {
-				if (!membro.getAfiliacao().equals(obj))
+		Pesquisador autor = artigo.getAutor();
+		ListaDeMembros revisoresAptos = new ListaDeMembros(revisores);
+		
+		for (MembroDeComite membro : revisoresAptos.getMembros()) {
+			
+			if (membro.getId() == autor.getId()) {
+				revisoresAptos.excluirMembro(membro);	
+			} else if (membro.getAfiliacao().equals(autor.getAfiliacao())) {
+				revisoresAptos.excluirMembro(membro);
+			} else if(!membro.possuiTopicoPesquisa(artigo.getTopicoPesquisa())) {
+				revisoresAptos.excluirMembro(membro);
+			} else if (artigo.ehRevisor(membro)){
+				revisoresAptos.excluirMembro(membro);
 			}
 		}
 		
+		revisoresAptos.ordenarNumeroDeArtigos();
+		
+		for (i = 0; i < numrevisores; i++) {
+			MembroDeComite revisor = revisoresAptos.getPrimeiroMembro();
+			artigo.addRevisor(revisor);
+		}
 	}
 
 	public Artigo getArtigo(int id) {
