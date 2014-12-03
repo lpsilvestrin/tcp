@@ -43,9 +43,10 @@ public class ListagemArtigos {
 		
 		revisoresAptos.ordenarNumeroDeArtigos();
 		
-		for (i = 0; i < numrevisores; i++) {
+		for (int i = 0; i < numrevisores; i++) {
 			MembroDeComite revisor = revisoresAptos.getPrimeiroMembro();
 			artigo.addRevisor(revisor);
+			revisoresAptos.excluirMembro(revisor);
 		}
 	}
 

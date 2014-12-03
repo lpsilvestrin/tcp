@@ -8,18 +8,20 @@ public class Revisao {
 	private int nota;
 
 	public Revisao(Revisor revisor, int nota) {
+		this.revisor = revisor;
+		this.nota = nota;
 	}
 
 	public Revisor getRevisor() {
-		return null;
+		return this.revisor;
 	}
 
 	public int getNota() {
-		return 0;
+		return this.nota;
 	}
 
-	public void setNota() {
-
+	public void setNota(int nota) {
+		this.nota = nota;
 	}
 
 	public boolean verificarRecebida() {
