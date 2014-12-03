@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import Dados.*;
+
 public class AfiliacaoTeste {
 
 	@BeforeClass
@@ -17,8 +19,20 @@ public class AfiliacaoTeste {
 	}
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void testAfiliacao() {
+		Afiliacao a = new Afiliacao("nome");
+		assertNotNull(a);
 	}
-
+	
+	@Test
+	public void testGetNome() {
+		String nome;
+		Afiliacao a;
+		nome = "Nome 1";
+		a = new Afiliacao(nome);
+		assertEquals(nome, a.getNome());
+		nome = "Nome 2";
+		a = new Afiliacao(nome);
+		assertEquals(nome, a.getNome());
+	}
 }
