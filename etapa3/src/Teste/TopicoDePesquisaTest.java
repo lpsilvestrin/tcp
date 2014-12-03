@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import Dados.*;
+
 public class TopicoDePesquisaTest {
 
 	@BeforeClass
@@ -18,12 +20,20 @@ public class TopicoDePesquisaTest {
 
 	@Test
 	public void testTopicoDePesquisa() {
-		fail("Not yet implemented");
+		TopicoDePesquisa t = new TopicoDePesquisa("tópico");
+		assertNotNull(t);
 	}
 
 	@Test
 	public void testGetTitulo() {
-		fail("Not yet implemented");
+		TopicoDePesquisa topico;
+		String titulo;
+		titulo = "titulo1";
+		topico = new TopicoDePesquisa(titulo);
+		assertEquals(titulo,topico.getTitulo());
+		titulo = "titulo2";
+		topico = new TopicoDePesquisa(titulo);
+		assertEquals(titulo,topico.getTitulo());
 	}
 
 }
