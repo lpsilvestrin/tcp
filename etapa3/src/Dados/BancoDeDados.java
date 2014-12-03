@@ -1,13 +1,6 @@
 package Dados;
 
 import java.util.ArrayList;
-import Artigo;
-import Conferencia;
-import ListaDeMembros;
-import MembroDeComite;
-import Pesquisador;
-import Revisao;
-import Revisor;
 
 public class BancoDeDados {
 	
@@ -62,7 +55,7 @@ public class BancoDeDados {
 	}
 	
 	private void storePesquisador(int id, Pesquisador pesq) {
-		this.afiliacoes.add(id, pesq);
+		this.pesquisadores.add(id, pesq);
 	}
 	
 	private void storeConferencia(int id, Conferencia conf) {
