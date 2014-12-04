@@ -2,6 +2,8 @@ package Dados;
 
 import java.util.ArrayList;
 
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+
 public class ListagemArtigos {
 
 	private int numrevisores;
@@ -59,6 +61,10 @@ public class ListagemArtigos {
 		log.append("Fim da alocação.");
 	}
 
+	public ArrayList<Artigo> getArtigos() {
+		return this.artigos;
+	}
+	
 	public Artigo getArtigo(int id) {
 		for (Artigo a : this.artigos) {
 			if (a.getId() == id) {
