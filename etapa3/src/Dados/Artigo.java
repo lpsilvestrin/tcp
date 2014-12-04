@@ -75,7 +75,14 @@ public class Artigo {
 	}
 	
 	public double getMedia() {
-		return 0;
+		int soma = 0;
+		int cont = 0;
+		for (Revisao r : this.revisoes) {
+			soma += r.getNota();
+			cont++;
+		}
+		
+		return soma/cont;
 	}
 
 	public int getNumRevisores() {
