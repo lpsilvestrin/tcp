@@ -6,5 +6,4 @@ public class MembroDeComite extends Pesquisador {
 		super(id, nome, afiliacao);
 	}
 	
-
 }
