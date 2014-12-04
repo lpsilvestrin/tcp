@@ -25,7 +25,18 @@ public class acaoListagem {
 		if(pendentes) {
 			System.out.println("Essa conferência possui revisões pendentes");
 		} else {
+			ArrayList<String> aceitos = this.operacoes.getListaArtigosAceitos(siglaConf);
+			ArrayList<String> rejeitados = this.operacoes.getListaArtigosRejeitados(siglaConf);
+			System.out.println("Artigos aceitos:");
 			
+			for (String artigo : aceitos) {
+				System.out.println(artigo);
+			}
+			
+			System.out.println("Aritos rejeitados");
+			for (String artigo : rejeitados) {
+				System.out.println(artigo);
+			}
 		}
 	}
 

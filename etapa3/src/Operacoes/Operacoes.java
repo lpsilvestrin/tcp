@@ -46,16 +46,15 @@ public class Operacoes {
 		return artigos;
 	}
 
-	public ArrayList<Artigo> getListaArtigosAceitos(String siglaConf) {
-		ArrayList<Artigo> acetios = getListaArtigos(siglaConf);
-		ArrayList<Artigo> aceitos = new ArrayList<Artigo>();
-		
-		for (Artigo a : artigos) {
-			if (a.verificarAceitacao()) {
-				aceitos.add(a);
-			}
+	public ArrayList<String> getListaArtigosAceitos(String siglaConf) {
+		Conferencia conf = this.bancoDeDados.getConferencia(siglaConf);
+		ArrayList<Artigo> aceitos = conf.getArtigosAceitos();
+		Collections.sort(aceitos, new ComparadorArtigoPorMediaDecresc());
+		ArrayList<String> aceitosString = new ArrayList<String>();
+		for (Artigo a : aceitos) {
+			aceitosString.add(a.getTitulo() + " - " + a.getMedia());
 		}
-		return aceitos;
+		return aceitosString;
 	}
 
 	public ArrayList<Conferencia> getListaConferencias() {
@@ -108,11 +107,16 @@ public class Operacoes {
 		return conferencia.getAlocacao().getLog();
 	}
 
-	public ArrayList<Artigo> getListaArtigosRejeitados(String siglaConf) {
-		ArrayList<Artigo> rejeitados = getListaArtigos(siglaConf);
+	public ArrayList<String> getListaArtigosRejeitados(String siglaConf) {
+		Conferencia conf = this.bancoDeDados.getConferencia(siglaConf);
+		ArrayList<Artigo> rejeitados = conf.getArtigosRejeitados();
 		Collections.sort(rejeitados, new ComparadorArtigoPorMediaCresc());
+		ArrayList<String> rejeitadosString = new ArrayList<String>();
+		for (Artigo a : rejeitados) {
+			rejeitadosString.add(a.getTitulo() + " - " + a.getMedia());
+		}
 		
-		return rejeitados;
+		return rejeitadosString;
 	}
 	
 	public boolean verificaRevisoesPendentes(String siglaConf) {
