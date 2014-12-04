@@ -27,6 +27,10 @@ public class Conferencia {
 		return this.sigla;
 	}
 
+	public ListagemArtigos getAlocacao() {
+		return this.alocacao;
+	}
+	
 	public ArrayList<MembroDeComite> getMembrosComite() {
 		return membroscomite.getMembros();
 	}
