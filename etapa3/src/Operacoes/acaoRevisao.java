@@ -34,7 +34,7 @@ public class acaoRevisao {
 		}
 		
 		int idRevisor = uiUtils.readInteger("Id do revisor");
-		int nota = uiUtils.readInteger("Nota");
+		int nota = uiUtils.readInteger("Nota", -3, 3);
 		this.operacoes.addRevisaoArtigo(idArtigo, idRevisor, nota);
 	}
 
