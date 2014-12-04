@@ -9,6 +9,11 @@ public class MembroDeComite extends Pesquisador {
 		this.qtdArtigosAlocados = 0;
 	}
 	
+	public MembroDeComite(Pesquisador pesquisador) {
+		super(pesquisador.id, pesquisador.nome, pesquisador.afiliacao);
+		this.qtdArtigosAlocados = 0;
+	}
+	
 	public void addQtdArtigosAlocados() {
 		this.qtdArtigosAlocados += 1;
 	}
