@@ -81,9 +81,21 @@ public class ListagemArtigos {
 	public void setNumRevisores(int numrevisores) {
 		this.numrevisores = numrevisores;
 	}
-
+	
 	public Artigo getArtigoMenorID() {
 		return this.artigos.get(0);
 	}
-
+	
+	public boolean verificaRevisoesPendentes() {
+		
+		boolean pendentes = false;
+		for (Artigo artigo : this.artigos) {
+			if (artigo.verificaRevisoesPendentes(getNumRevisores())) {
+				pendentes = true;
+			}
+		}
+		return pendentes;
+	}
+	
+	
 }

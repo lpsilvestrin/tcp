@@ -109,4 +109,12 @@ public class Artigo {
 		return null;
 	}
 	
+	public boolean verificaRevisoesPendentes(int numRevisores) {
+		if (numRevisores > revisoes.size()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 }

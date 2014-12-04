@@ -63,5 +63,5 @@ public class Conferencia {
 	public boolean alocacaoRealizada() {
 		return this.alocacaoRealizada;
 	}
-
+	
 }
