@@ -193,6 +193,7 @@ public class BancoDeDados {
 				Pesquisador pesq = this.pesquisadores.get(i - 1);
 				sbes.addMembroComite(new MembroDeComite(pesq));
 			}
+			storeConferencia(sbes);
 			
 			int artId = 0;
 			Artigo art1 = new Artigo(++artId, "Coupling and Cohesion", this.pesquisadores.get(1), "SBES", this.topicospesquisa.get(2));
