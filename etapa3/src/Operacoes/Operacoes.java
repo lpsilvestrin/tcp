@@ -26,11 +26,14 @@ public class Operacoes {
 		conferencia.alocarRevisores(numrevisores);
 	}
 
-	public ArrayList<Artigo> getListaArtigos(String siglaConf) {
+	public ArrayList<String> getListaArtigos(String siglaConf) {
 		Conferencia conf = this.bancoDeDados.getConferencia(siglaConf);
 		ListagemArtigos alocacao = conf.getAlocacao();
-
-		return alocacao.getArtigos();
+		ArrayList<String> artigos = new ArrayList<String>();
+		for (Artigo a : alocacao.getArtigos()) {
+			artigos.add(a.getId() + " - " + a.getTitulo());
+		}
+		return artigos;
 	}
 
 	public ArrayList<Artigo> getListaArtigosAceitos(String siglaConf) {
@@ -49,12 +52,22 @@ public class Operacoes {
 		return this.bancoDeDados.getConferencias();
 	}
 
-	public ArrayList<Conferencia> getListaConferenciasNaoAlocadas() {
+	public ArrayList<String> getListaConferenciasSiglas() {
+		ArrayList<String> siglas = new ArrayList<String>();
+		ArrayList<Conferencia> confs = getListaConferencias();
+		for(Conferencia conf : confs) {
+			siglas.add(conf.getSigla());
+		}
+		
+		return siglas;
+	}
+	
+	public ArrayList<String> getListaSiglasConfNaoAlocadas() {
 		ArrayList<Conferencia> conferencias = this.bancoDeDados.getConferencias();
-		ArrayList<Conferencia> naoAlocadas = new ArrayList<Conferencia>();
+		ArrayList<String> siglasNaoAlocadas = new ArrayList<String>();
 		for (Conferencia conf : conferencias) {
 			if (!conf.alocacaoRealizada()) {
-				naoAlocadas.add(conf);
+				naoAlocadas.add(conf.getSigla());
 			}
 		}
 		return naoAlocadas;
