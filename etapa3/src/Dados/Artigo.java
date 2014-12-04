@@ -52,7 +52,7 @@ public class Artigo {
 		return this.topicopesquisa;
 	}
 
-	public void addRevisao(Revisor revisor, int nota) {
+	public void addRevisao(int revisorId, int nota) {
 		Revisao revisao = new Revisao(revisor, nota);
 		revisoes.add(revisao);
 	}
@@ -84,6 +84,16 @@ public class Artigo {
 	
 	public ArrayList<Revisor> getRevisores() {
 		return this.revisores;
+	}
+	
+	private Revisor getRevisor(int id) {
+		for (Revisor r : this.revisores) {
+			if (r.getId() == id) {
+				return r;
+			}
+		}
+		
+		return null;
 	}
 	
 }
