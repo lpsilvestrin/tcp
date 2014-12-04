@@ -65,6 +65,10 @@ public class ListagemArtigos {
 		return this.artigos;
 	}
 	
+	public void addArtigo(Artigo artigo) {
+		this.artigos.add(artigo);
+	}
+	
 	public Artigo getArtigo(int id) {
 		for (Artigo a : this.artigos) {
 			if (a.getId() == id) {
