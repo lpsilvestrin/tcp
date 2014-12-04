@@ -23,31 +23,39 @@ public class ListagemArtigos {
 	}
 
 	public void alocarRevisores(ListaDeMembros revisores) {
-		
-		Artigo artigo = this.getArtigoMenorID();
-		Pesquisador autor = artigo.getAutor();
-		ListaDeMembros revisoresAptos = new ListaDeMembros(revisores);
-		
-		for (MembroDeComite membro : revisoresAptos.getMembros()) {
-			
-			if (membro.getId() == autor.getId()) {
-				revisoresAptos.excluirMembro(membro);	
-			} else if (membro.getAfiliacao().equals(autor.getAfiliacao())) {
-				revisoresAptos.excluirMembro(membro);
-			} else if(!membro.possuiTopicoPesquisa(artigo.getTopicoPesquisa())) {
-				revisoresAptos.excluirMembro(membro);
-			} else if (artigo.ehRevisor(membro)){
-				revisoresAptos.excluirMembro(membro);
+		this.log.append("Iniciando alocação.\n");
+		for (Artigo artigo : this.artigos) {
+			if(artigo.getNumRevisores() < this.numrevisores) {
+				Pesquisador autor = artigo.getAutor();
+				ListaDeMembros revisoresAptos = new ListaDeMembros(revisores);
+				
+				for (MembroDeComite membro : revisoresAptos.getMembros()) {
+					
+					if (membro.getId() == autor.getId()) {
+						revisoresAptos.excluirMembro(membro);	
+					} else if (membro.getAfiliacao().equals(autor.getAfiliacao())) {
+						revisoresAptos.excluirMembro(membro);
+					} else if(!membro.possuiTopicoPesquisa(artigo.getTopicoPesquisa())) {
+						revisoresAptos.excluirMembro(membro);
+					} else if (artigo.ehRevisor(membro)){
+						revisoresAptos.excluirMembro(membro);
+					}
+				}
+				
+				revisoresAptos.ordenarNumeroDeArtigos();
+				
+				while (artigo.getNumRevisores() < numrevisores) {
+					MembroDeComite revisor = revisoresAptos.getPrimeiroMembro();
+					Revisor revisorSelecionado = new Revisor(revisor);
+					revisorSelecionado.addQtdArtigosAlocados();
+					artigo.addRevisor(revisorSelecionado);
+					
+					revisoresAptos.excluirMembro(revisor);
+					log.append("Artigo id " + artigo.getId() + " alocado ao revisor id " + revisor.getId());
+				}
 			}
 		}
-		
-		revisoresAptos.ordenarNumeroDeArtigos();
-		
-		for (int i = 0; i < numrevisores; i++) {
-			MembroDeComite revisor = revisoresAptos.getPrimeiroMembro();
-			artigo.addRevisor(revisor);
-			revisoresAptos.excluirMembro(revisor);
-		}
+		log.append("Fim da alocação.");
 	}
 
 	public Artigo getArtigo(int id) {

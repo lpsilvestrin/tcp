@@ -67,7 +67,7 @@ public class Artigo {
 
 	public boolean ehRevisor(Revisor revisor) {
 		for (Revisor r : this.revisores) {
-			if (r.equals(revisor)) {
+			if (r.getId() == revisor.getId()) {
 				return true;
 			}
 		}
