@@ -99,7 +99,7 @@ public class BancoDeDados {
 	}
 	
 	private void initData() {
-//		try {
+		try {
 			
 			
 			Afiliacao af1 =	new Afiliacao("UFRGS");
@@ -248,10 +248,10 @@ public class BancoDeDados {
 			storeArtigo(art11);
 					
 
-		} /* catch (Exception e) {
-			System.out.println("Base de dados não pode ser inicializada.\n");
+		} catch (Exception e) {
+			System.err.println("Base de dados não pode ser inicializada.\n");
             //error(e);                                                       
             //e.printStackTrace();                                                
         }     
-	} */
+	} 
 }
