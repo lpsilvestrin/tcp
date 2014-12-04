@@ -1,6 +1,11 @@
 package Dados;
 
 import java.util.ArrayList;
+import.Dados.Afiliacao;
+import Dados.Artigo;
+import Dados.Conferencia;
+import Dados.Pesquisador;
+
 
 public class BancoDeDados {
 	
@@ -86,14 +91,14 @@ public class BancoDeDados {
 	
 	private void initData() {
 		try {
-			int afilId = 0; //primeiro p
+			int afilId = 0;
 			
-			Afiliacao af1 =	new Afiliacao(++afilId, "UFRGS");
-			storeAfiliacao(afilId, af1);
-			Afiliacao af2 =	new Afiliacao(++afilId, "USP");
-			storeAfiliacao(afilId, af2);
-			Afiliacao af3 =	new Afiliacao(++afilId, "UFRJ");
-			storeAfiliacao(afilId, af3);
+			Afiliacao af1 =	new Afiliacao("UFRGS");
+			storeAfiliacao(++afilId, af1);
+			Afiliacao af2 =	new Afiliacao("USP");
+			storeAfiliacao(++afilId, af2);
+			Afiliacao af3 =	new Afiliacao("UFRJ");
+			storeAfiliacao(++afilId, af3);
 			
 			int topicId = 0;
 			TopicoDePesquisa topic0 = new TopicoDePesquisa("Software Product Lines");
