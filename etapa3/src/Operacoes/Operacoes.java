@@ -85,6 +85,16 @@ public class Operacoes {
 		artigo.addRevisao(revisorId, nota);
 	}
 
+	public ArrayList<String> getListaRevisoresString(int artigoId) {
+		Artigo artigo = this.bancoDeDados.getArtigo(artigoId);
+		ArrayList<String> revisores = new ArrayList<String>();
+		for (Revisor r : artigo.getRevisores()) {
+			revisores.add(r.getId() + " - " + r.getNome());
+		}
+		
+		return revisores;
+	}
+	
 	public ArrayList<Revisor> getListaRevisores(int artigoId) {
 		Artigo artigo = this.bancoDeDados.getArtigo(artigoId);
 		return artigo.getRevisores();
