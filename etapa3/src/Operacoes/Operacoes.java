@@ -16,8 +16,12 @@ public class Operacoes {
 
 	private BancoDeDados bancoDeDados;
 
+	public Operacoes() {
+		bancoDeDados = new BancoDeDados();
+	}
+	
 	public void criarAlocacao(String conferencia, int numrevisores) {
-
+		
 	}
 
 	public ArrayList<Artigo> getListaArtigos(String conferencia) {
@@ -36,8 +40,10 @@ public class Operacoes {
 		return null;
 	}
 
-	public void addRevisaoArtigo(int artigo, int revisor, int nota) {
-
+	public void addRevisaoArtigo(int artigoId, int revisorId, int nota) {
+		Artigo artigo = listagemArtigos.getArtigo(artigoId);
+		ArrayList<Revisor> revisores = artigo.getRevisores();
+		artigo.addRevisao(revisor, nota);
 	}
 
 	public ArrayList<Pesquisador> getListaRevisores() {
