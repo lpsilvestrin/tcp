@@ -116,5 +116,10 @@ public class Operacoes {
 		}
 		return rejeitados;
 	}
-
+	
+	public boolean verificaRevisoesPendentes(String siglaConf) {
+		Conferencia conferencia = this.bancoDeDados.getConferencia(siglaConf);
+		return conferencia.getAlocacao().verificaRevisoesPendentes();
+	}
+	
 }
