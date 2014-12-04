@@ -7,6 +7,7 @@ import Dados.BancoDeDados;
 import Dados.Conferencia;
 import Dados.ListagemArtigos;
 import Dados.Pesquisador;
+import Dados.Revisor;
 
 public class Operacoes {
 
@@ -26,15 +27,26 @@ public class Operacoes {
 	}
 
 	public ArrayList<Artigo> getListaArtigos(String siglaConf) {
-		return null;
+		Conferencia conf = this.bancoDeDados.getConferencia(siglaConf);
+		ListagemArtigos alocacao = conf.getAlocacao();
+
+		return alocacao.getArtigos();
 	}
 
-	public ArrayList<Artigo> getListaArtigosAceitos(String conferencia) {
-		return null;
+	public ArrayList<Artigo> getListaArtigosAceitos(String siglaConf) {
+		ArrayList<Artigo> artigos = getListaArtigos(siglaConf);
+		ArrayList<Artigo> aceitos = new ArrayList<Artigo>();
+		
+		for (Artigo a : artigos) {
+			if (a.verificarAceitacao()) {
+				aceitos.add(a);
+			}
+		}
+		return aceitos;
 	}
 
 	public ArrayList<Conferencia> getListaConferencias() {
-		return null;
+		return this.bancoDeDados.getConferencias();
 	}
 
 	public ArrayList<Conferencia> getListaConferenciasNaoAlocadas() {
@@ -53,16 +65,26 @@ public class Operacoes {
 		artigo.addRevisao(revisorId, nota);
 	}
 
-	public ArrayList<Pesquisador> getListaRevisores() {
-		return null;
+	public ArrayList<Revisor> getListaRevisores(int artigoId) {
+		Artigo artigo = this.bancoDeDados.getArtigo(artigoId);
+		return artigo.getRevisores();
 	}
 
-	public StringBuffer getLog(String conferencia) {
-		return null;
+	public StringBuffer getLog(String siglaConf) {
+		Conferencia conferencia = this.bancoDeDados.getConferencia(siglaConf);
+		return conferencia.getAlocacao().getLog();
 	}
 
-	public ArrayList<Artigo> getListaArtigosRejeitados(String conferencia) {
-		return null;
+	public ArrayList<Artigo> getListaArtigosRejeitados(String siglaConf) {
+		ArrayList<Artigo> artigos = getListaArtigos(siglaConf);
+		ArrayList<Artigo> rejeitados = new ArrayList<Artigo>();
+		
+		for (Artigo a : artigos) {
+			if (!a.verificarAceitacao()) {
+				rejeitados.add(a);
+			}
+		}
+		return rejeitados;
 	}
 
 }
