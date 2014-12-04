@@ -44,7 +44,7 @@ public class Conferencia {
 	}
 
 	public void alocarRevisores(int numrevisores) {
-		alocacao.alocarRevisores(membroscomite);
+		alocacao.alocarRevisores(membroscomite, numrevisores);
 	}
 
 	public boolean alocacaoRealizada() {

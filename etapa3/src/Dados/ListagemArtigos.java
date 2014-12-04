@@ -22,10 +22,11 @@ public class ListagemArtigos {
 		return this.log;
 	}
 
-	public void alocarRevisores(ListaDeMembros revisores) {
+	public void alocarRevisores(ListaDeMembros revisores, int numrevisores) {
+		this.numrevisores = numrevisores;
 		this.log.append("Iniciando alocação.\n");
 		for (Artigo artigo : this.artigos) {
-			if(artigo.getNumRevisores() < this.numrevisores) {
+			if(artigo.getNumRevisores() < numrevisores) {
 				Pesquisador autor = artigo.getAutor();
 				ListaDeMembros revisoresAptos = new ListaDeMembros(revisores);
 				
