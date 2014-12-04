@@ -23,6 +23,10 @@ public class Conferencia {
 		membroscomite.addMembro(membro);
 	}
 
+	public void setAlocacao(ListagemArtigos alocacao) {
+		this.alocacao = alocacao;
+	}
+	
 	public String getSigla() {
 		return this.sigla;
 	}
