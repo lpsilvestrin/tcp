@@ -26,7 +26,14 @@ public class Operacoes {
 		conferencia.alocarRevisores(numrevisores);
 	}
 
-	public ArrayList<String> getListaArtigos(String siglaConf) {
+	public ArrayList<Artigo> getListaArtigos(String siglaConf) {
+		Conferencia conf = this.bancoDeDados.getConferencia(siglaConf);
+		ListagemArtigos alocacao = conf.getAlocacao();
+		
+		return alocacao.getArtigos();
+	}
+	
+	public ArrayList<String> getListaArtigosString(String siglaConf) {
 		Conferencia conf = this.bancoDeDados.getConferencia(siglaConf);
 		ListagemArtigos alocacao = conf.getAlocacao();
 		ArrayList<String> artigos = new ArrayList<String>();
@@ -64,7 +71,7 @@ public class Operacoes {
 	
 	public ArrayList<String> getListaSiglasConfNaoAlocadas() {
 		ArrayList<Conferencia> conferencias = this.bancoDeDados.getConferencias();
-		ArrayList<String> siglasNaoAlocadas = new ArrayList<String>();
+		ArrayList<String> naoAlocadas = new ArrayList<String>();
 		for (Conferencia conf : conferencias) {
 			if (!conf.alocacaoRealizada()) {
 				naoAlocadas.add(conf.getSigla());
