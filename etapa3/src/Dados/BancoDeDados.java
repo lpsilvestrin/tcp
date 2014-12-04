@@ -62,6 +62,28 @@ public class BancoDeDados {
 		this.conferencias.add(id, conf);
 	}
 	
+	public Artigo getArtigo(int id) {
+		
+		for (Artigo artigo : this.artigos) {
+			if (artigo.getId() == id) {
+				return artigo;
+			}
+		}
+		
+		return null;
+		
+	}
+	
+	public Conferencia getConferencia(String sigla) {
+		for (Conferencia conferencia : this.conferencias) {
+			if(conferencia.getSigla().equalsIgnoreCase(sigla)) {
+				return conferencia;
+			}
+		}
+		
+		return null;
+	}
+	
 	private void initData() {
 		try {
 			int afilId = 0; //primeiro p
