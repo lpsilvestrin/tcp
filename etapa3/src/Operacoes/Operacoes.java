@@ -25,7 +25,7 @@ public class Operacoes {
 		conferencia.alocarRevisores(numrevisores);
 	}
 
-	public ArrayList<Artigo> getListaArtigos(String conferencia) {
+	public ArrayList<Artigo> getListaArtigos(String siglaConf) {
 		return null;
 	}
 
@@ -38,7 +38,14 @@ public class Operacoes {
 	}
 
 	public ArrayList<Conferencia> getListaConferenciasNaoAlocadas() {
-		return null;
+		ArrayList<Conferencia> conferencias = this.bancoDeDados.getConferencias();
+		ArrayList<Conferencia> naoAlocadas = new ArrayList<Conferencia>();
+		for (Conferencia conf : conferencias) {
+			if (!conf.alocacaoRealizada()) {
+				naoAlocadas.add(conf);
+			}
+		}
+		return naoAlocadas;
 	}
 
 	public void addRevisaoArtigo(int artigoId, int revisorId, int nota) {
