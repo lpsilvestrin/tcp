@@ -58,7 +58,13 @@ public class Artigo {
 	}
 
 	public boolean verificarAceitacao() {
-		return false;
+		double media = getMedia();
+		
+		if (media >= 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public void addRevisor(Revisor revisor) {
@@ -75,8 +81,8 @@ public class Artigo {
 	}
 	
 	public double getMedia() {
-		int soma = 0;
-		int cont = 0;
+		float soma = 0;
+		float cont = 0;
 		for (Revisao r : this.revisoes) {
 			soma += r.getNota();
 			cont++;
