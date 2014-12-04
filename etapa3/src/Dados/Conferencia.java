@@ -9,11 +9,14 @@ public class Conferencia {
 	private ListaDeMembros membroscomite;
 
 	private ListagemArtigos alocacao;
+	
+	private boolean alocacaoRealizada;
 
 	public Conferencia(String sigla) {
 		this.sigla = sigla;
-		membroscomite = new ListaDeMembros();
-		alocacao = new ListagemArtigos();
+		this.membroscomite = new ListaDeMembros();
+		this.alocacao = new ListagemArtigos();
+		this.alocacaoRealizada = false;
 	}
 
 	public void addMembroComite(MembroDeComite membro) {
@@ -45,10 +48,12 @@ public class Conferencia {
 
 	public void alocarRevisores(int numrevisores) {
 		alocacao.alocarRevisores(membroscomite, numrevisores);
+		this.alocacaoRealizada = true;
+		
 	}
 
 	public boolean alocacaoRealizada() {
-		return false;
+		return this.alocaoRealizada;
 	}
 
 }
