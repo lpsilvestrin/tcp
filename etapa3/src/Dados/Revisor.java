@@ -3,12 +3,12 @@ package Dados;
 public class Revisor extends MembroDeComite {
 
 	private int qtdArtigosAlocados;
-	
-	public Revisor(int id, String nome, Afiliacao afiliacao) {
-		super(id, nome, afiliacao);
+
+	public Revisor(MembroDeComite membroDeComite) {
+		super(membroDeComite.id, membroDeComite.nome, membroDeComite.afiliacao);
 		this.qtdArtigosAlocados = 0;
 	}
-
+	
 	public void addQtdArtigosAlocados() {
 		this.qtdArtigosAlocados += 1;
 	}
