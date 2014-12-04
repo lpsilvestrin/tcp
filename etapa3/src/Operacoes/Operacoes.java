@@ -1,11 +1,14 @@
 package Operacoes;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import Dados.Artigo;
 import Dados.BancoDeDados;
 import Dados.Conferencia;
 import Dados.ListagemArtigos;
+import Dados.MembroDeComite;
 import Dados.Pesquisador;
 import Dados.Revisor;
 
@@ -44,7 +47,7 @@ public class Operacoes {
 	}
 
 	public ArrayList<Artigo> getListaArtigosAceitos(String siglaConf) {
-		ArrayList<Artigo> artigos = getListaArtigos(siglaConf);
+		ArrayList<Artigo> acetios = getListaArtigos(siglaConf);
 		ArrayList<Artigo> aceitos = new ArrayList<Artigo>();
 		
 		for (Artigo a : artigos) {
@@ -106,20 +109,29 @@ public class Operacoes {
 	}
 
 	public ArrayList<Artigo> getListaArtigosRejeitados(String siglaConf) {
-		ArrayList<Artigo> artigos = getListaArtigos(siglaConf);
-		ArrayList<Artigo> rejeitados = new ArrayList<Artigo>();
+		ArrayList<Artigo> rejeitados = getListaArtigos(siglaConf);
+		Collections.sort(rejeitados, new ComparadorArtigoPorMediaCresc());
 		
-		for (Artigo a : artigos) {
-			if (!a.verificarAceitacao()) {
-				rejeitados.add(a);
-			}
-		}
 		return rejeitados;
 	}
 	
 	public boolean verificaRevisoesPendentes(String siglaConf) {
 		Conferencia conferencia = this.bancoDeDados.getConferencia(siglaConf);
 		return conferencia.getAlocacao().verificaRevisoesPendentes();
+	}
+	
+	private class ComparadorArtigoPorMediaCresc implements Comparator<Artigo> {
+		@Override
+		public int compare(Artigo artigo1, Artigo artigo2) {
+			return Double.compare(artigo1.getMedia(), artigo2.getMedia());
+		}
+	}
+	
+	private class ComparadorArtigoPorMediaDecresc implements Comparator<Artigo> {
+		@Override
+		public int compare(Artigo artigo1, Artigo artigo2) {
+			return Double.compare(artigo1.getMedia(), artigo2.getMedia());
+		}
 	}
 	
 }

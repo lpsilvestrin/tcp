@@ -1,6 +1,7 @@
 package Dados;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
@@ -97,5 +98,25 @@ public class ListagemArtigos {
 		return pendentes;
 	}
 	
+	public ArrayList<Artigo> getListaArtigosAceitos() {
+		ArrayList<Artigo> aceitos = new ArrayList<Artigo>();
+		
+		for (Artigo a : this.artigos) {
+			if (a.verificarAceitacao()) {
+				aceitos.add(a);
+			}
+		}
+		return aceitos;
+	}
 	
+	public ArrayList<Artigo> getListaArtigosRejeitados() {
+		ArrayList<Artigo> rejeitados = new ArrayList<Artigo>();
+		
+		for (Artigo a : this.artigos) {
+			if (!a.verificarAceitacao()) {
+				rejeitados.add(a);
+			}
+		}
+		return rejeitados;
+	}
 }

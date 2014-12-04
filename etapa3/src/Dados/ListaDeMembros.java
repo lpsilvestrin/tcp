@@ -36,7 +36,7 @@ public class ListaDeMembros {
 		return membrosDeComite.get(0);
 	}
 	
-	public class ComparadorMembrosDeComite implements Comparator<MembroDeComite> {
+	private class ComparadorMembrosDeComite implements Comparator<MembroDeComite> {
 		@Override
 		public int compare(MembroDeComite membro1, MembroDeComite membro2) {
 			return Integer.compare(membro1.getQtdArtigosAlocados(), membro2.getQtdArtigosAlocados());
