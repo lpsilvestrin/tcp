@@ -53,7 +53,7 @@ public class Conferencia {
 	}
 
 	public boolean alocacaoRealizada() {
-		return this.alocaoRealizada;
+		return this.alocacaoRealizada;
 	}
 
 }
