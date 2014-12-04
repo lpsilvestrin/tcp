@@ -53,7 +53,7 @@ public class Artigo {
 	}
 
 	public void addRevisao(int revisorId, int nota) {
-		Revisao revisao = new Revisao(revisor, nota);
+		Revisao revisao = new Revisao(getRevisor(revisorId), nota);
 		revisoes.add(revisao);
 	}
 
