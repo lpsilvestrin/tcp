@@ -71,7 +71,7 @@ public class Artigo {
 		this.revisores.add(revisor);
 	}
 
-	public boolean ehRevisor(Revisor revisor) {
+	public boolean ehRevisor(MembroDeComite revisor) {
 		for (Revisor r : this.revisores) {
 			if (r.getId() == revisor.getId()) {
 				return true;
