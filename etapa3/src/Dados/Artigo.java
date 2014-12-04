@@ -18,7 +18,7 @@ public class Artigo {
 
 	private ArrayList<Revisao> revisoes;
 	
-	private ArrayList<Pesquisador> revisores;
+	private ArrayList<Revisor> revisores;
 
 	public Artigo(int id, String titulo, Pesquisador autor, String conferencia, TopicoDePesquisa topicopesquisa) {
 	
@@ -28,7 +28,7 @@ public class Artigo {
 		this.conferencia = conferencia;
 		this.topicopesquisa = topicopesquisa;
 		this.revisoes = new ArrayList<Revisao>();
-		this.revisores = new ArrayList<Pesquisador>();
+		this.revisores = new ArrayList<Revisor>();
 		
 	}
 
@@ -61,13 +61,13 @@ public class Artigo {
 		return false;
 	}
 
-	public void addRevisor(Pesquisador revisor) {
+	public void addRevisor(Revisor revisor) {
 		this.revisores.add(revisor);
 	}
 
-	public boolean ehRevisor(Pesquisador pesquisador) {
-		for (Pesquisador revisor : this.revisores) {
-			if (revisor.equals(pesquisador)) {
+	public boolean ehRevisor(Revisor revisor) {
+		for (Revisor r : this.revisores) {
+			if (r.equals(revisor)) {
 				return true;
 			}
 		}
@@ -78,4 +78,12 @@ public class Artigo {
 		return 0;
 	}
 
+	public int getNumRevisores() {
+		return this.revisores.size();
+	}
+	
+	public ArrayList<Revisor> getRevisores() {
+		return this.revisores;
+	}
+	
 }
