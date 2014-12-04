@@ -20,8 +20,9 @@ public class Operacoes {
 		bancoDeDados = new BancoDeDados();
 	}
 	
-	public void criarAlocacao(String conferencia, int numrevisores) {
-		
+	public void criarAlocacao(String sigla, int numrevisores) {
+		Conferencia conferencia = bancoDeDados.getConferencia(sigla);
+		conferencia.alocarRevisores(numrevisores);
 	}
 
 	public ArrayList<Artigo> getListaArtigos(String conferencia) {
@@ -42,8 +43,7 @@ public class Operacoes {
 
 	public void addRevisaoArtigo(int artigoId, int revisorId, int nota) {
 		Artigo artigo = listagemArtigos.getArtigo(artigoId);
-		ArrayList<Revisor> revisores = artigo.getRevisores();
-		artigo.addRevisao(revisor, nota);
+		artigo.addRevisao(revisorId, nota);
 	}
 
 	public ArrayList<Pesquisador> getListaRevisores() {
