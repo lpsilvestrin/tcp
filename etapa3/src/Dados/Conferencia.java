@@ -24,7 +24,7 @@ public class Conferencia {
 	}
 
 	public void addArtigo(Artigo artigo) {
-		this.alocacao = alocacao.addArtigo(artigo);
+		this.alocacao.addArtigo(artigo);
 	}
 	
 	public String getSigla() {
@@ -40,9 +40,13 @@ public class Conferencia {
 	}
 
 	public ArrayList<Artigo> getArtigosAceitos() {
-		return null;
+		return this.alocacao.getListaArtigosAceitos();
 	}
 
+	public ArrayList<Artigo> getArtigosRejeitados() {
+		return this.alocacao.getListaArtigosRejeitados();
+	}
+	
 	public MembroDeComite getMembroDeComite(int id) {
 		ArrayList<MembroDeComite> membros = getMembrosComite();
 		for (MembroDeComite m : membros) {
