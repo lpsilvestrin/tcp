@@ -181,18 +181,21 @@ public class BancoDeDados {
 				Pesquisador pesq = this.pesquisadores.get(i - 1);
 				icse.addMembroComite(new MembroDeComite(pesq));
 			}
+			icse.setNumRevisores(2);
 			storeConferencia(icse);
 			Conferencia fse = new Conferencia("FSE");
 			for (int i = 1; i < 8; i++) {
 				Pesquisador pesq = this.pesquisadores.get(i - 1);
 				icse.addMembroComite(new MembroDeComite(pesq));
 			}
+			fse.setNumRevisores(2);
 			storeConferencia(fse);
 			Conferencia sbes = new Conferencia("SBES");
 			for (int i = 4; i < 11; i++) {
 				Pesquisador pesq = this.pesquisadores.get(i - 1);
 				sbes.addMembroComite(new MembroDeComite(pesq));
 			}
+			sbes.setNumRevisores(2);
 			storeConferencia(sbes);
 			
 			int artId = 0;
@@ -200,6 +203,7 @@ public class BancoDeDados {
 			art1.addRevisor(new Revisor(new MembroDeComite(this.pesquisadores.get(7))));
 			art1.addRevisor(new Revisor(new MembroDeComite(this.pesquisadores.get(9))));
 			art1.addRevisao(8, 2);
+			sbes.addArtigo(art1);
 			storeArtigo(art1);
 			
 			Artigo art2 = new Artigo(++artId, "Design Patterns", this.pesquisadores.get(5), "FSE", this.topicospesquisa.get(1));
@@ -207,6 +211,7 @@ public class BancoDeDados {
 			art2.addRevisor(new Revisor(new MembroDeComite(this.pesquisadores.get(1))));
 			art2.addRevisao(7, 2);
 			art2.addRevisao(2, 3);
+			fse.addArtigo(art2);
 			storeArtigo(art2);
 			
 			Artigo art3 = new Artigo(++artId, "AspectJ", this.pesquisadores.get(6), "FSE", this.topicospesquisa.get(5));
@@ -214,6 +219,7 @@ public class BancoDeDados {
 			art3.addRevisor(new Revisor(new MembroDeComite(this.pesquisadores.get(5))));
 			art3.addRevisao(4, -1);
 			art3.addRevisao(6, 1);
+			fse.addArtigo(art3);
 			storeArtigo(art3);
 			
 			Artigo art4 = new Artigo(++artId, "Feature Model", this.pesquisadores.get(7), "FSE", this.topicospesquisa.get(0));
@@ -221,6 +227,7 @@ public class BancoDeDados {
 			art4.addRevisor(new Revisor(new MembroDeComite(this.pesquisadores.get(2))));
 			art4.addRevisao(1, 1);
 			art4.addRevisao(3, 0);
+			fse.addArtigo(art4);
 			storeArtigo(art4);
 			
 			Artigo art5 = new Artigo(++artId, "Architecture Recovery", this.pesquisadores.get(8), "FSE", this.topicospesquisa.get(4));
@@ -228,6 +235,7 @@ public class BancoDeDados {
 			art5.addRevisor(new Revisor(new MembroDeComite(this.pesquisadores.get(4))));
 			art5.addRevisao(4,  -3);
 			art5.addRevisao(5, -3);
+			fse.addArtigo(art5);
 			storeArtigo(art5);
 			
 			Artigo art6 = new Artigo(++artId, "Functional Testing", this.pesquisadores.get(9), "FSE", this.topicospesquisa.get(3));
@@ -235,17 +243,23 @@ public class BancoDeDados {
 			art6.addRevisor(new Revisor(new MembroDeComite(this.pesquisadores.get(5))));
 			art6.addRevisao(3,  -1);
 			art6.addRevisao(6, 0);
+			fse.addArtigo(art6);
 			storeArtigo(art6);
 			
 			Artigo art7 = new Artigo(++artId, "COTs", this.pesquisadores.get(5), "ICSE", this.topicospesquisa.get(1));
+			icse.addArtigo(art7);
 			storeArtigo(art7);
 			Artigo art8 = new Artigo(++artId, "Pointcut", this.pesquisadores.get(6), "ICSE", this.topicospesquisa.get(5));
+			icse.addArtigo(art8);
 			storeArtigo(art8);
 			Artigo art9 = new Artigo(++artId, "Product Derivation", this.pesquisadores.get(7), "ICSE", this.topicospesquisa.get(0));
+			icse.addArtigo(art9);
 			storeArtigo(art9);
 			Artigo art10 = new Artigo(++artId, "Architecture Comformance", this.pesquisadores.get(8), "ICSE", this.topicospesquisa.get(4));
+			icse.addArtigo(art10);
 			storeArtigo(art10);
 			Artigo art11 = new Artigo(++artId, "Structural Testing", this.pesquisadores.get(9), "ICSE", this.topicospesquisa.get(3));
+			icse.addArtigo(art11);
 			storeArtigo(art11);
 					
 

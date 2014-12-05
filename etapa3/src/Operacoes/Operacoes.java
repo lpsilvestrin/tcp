@@ -52,9 +52,21 @@ public class Operacoes {
 		Collections.sort(aceitos, new ComparadorArtigoPorMediaDecresc());
 		ArrayList<String> aceitosString = new ArrayList<String>();
 		for (Artigo a : aceitos) {
-			aceitosString.add(a.getTitulo() + " - " + a.getMedia());
+			aceitosString.add(a.getTitulo()); // + " - " + a.getMedia());
 		}
 		return aceitosString;
+	}
+	
+	public ArrayList<String> getListaArtigosRejeitados(String siglaConf) {
+		Conferencia conf = this.bancoDeDados.getConferencia(siglaConf);
+		ArrayList<Artigo> rejeitados = conf.getArtigosRejeitados();
+		Collections.sort(rejeitados, new ComparadorArtigoPorMediaCresc());
+		ArrayList<String> rejeitadosString = new ArrayList<String>();
+		for (Artigo a : rejeitados) {
+			rejeitadosString.add(a.getTitulo()); // + " - " + a.getMedia());
+		}
+		
+		return rejeitadosString;
 	}
 
 	public ArrayList<Conferencia> getListaConferencias() {
@@ -105,18 +117,6 @@ public class Operacoes {
 	public StringBuffer getLog(String siglaConf) {
 		Conferencia conferencia = this.bancoDeDados.getConferencia(siglaConf);
 		return conferencia.getAlocacao().getLog();
-	}
-
-	public ArrayList<String> getListaArtigosRejeitados(String siglaConf) {
-		Conferencia conf = this.bancoDeDados.getConferencia(siglaConf);
-		ArrayList<Artigo> rejeitados = conf.getArtigosRejeitados();
-		Collections.sort(rejeitados, new ComparadorArtigoPorMediaCresc());
-		ArrayList<String> rejeitadosString = new ArrayList<String>();
-		for (Artigo a : rejeitados) {
-			rejeitadosString.add(a.getTitulo() + " - " + a.getMedia());
-		}
-		
-		return rejeitadosString;
 	}
 	
 	public boolean verificaRevisoesPendentes(String siglaConf) {

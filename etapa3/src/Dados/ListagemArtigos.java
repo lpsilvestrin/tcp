@@ -94,7 +94,7 @@ public class ListagemArtigos {
 		
 		boolean pendentes = false;
 		for (Artigo artigo : this.artigos) {
-			if (artigo.verificaRevisoesPendentes(getNumRevisores())) {
+			if (artigo.verificaRevisoesPendentes(this.getNumRevisores())) {
 				pendentes = true;
 			}
 		}

@@ -1,4 +1,6 @@
 package Interface;
+import java.io.BufferedReader;                                                  
+import java.io.InputStreamReader;
 import Operacoes.Operacoes;
 import Operacoes.acaoAlocar;
 import Operacoes.acaoListagem;
@@ -14,7 +16,7 @@ public class InterfacePrincipal {
 
 	private acaoRevisao acaoRevisao;
 	
-	private int opcao;
+	private Integer opcao;
 	
 	public InterfacePrincipal(Operacoes operacoes) {
 		this.operacoes = operacoes;
@@ -33,17 +35,29 @@ public class InterfacePrincipal {
 			System.out.println("2 - Fazer revisão");
 			System.out.println("3 - Listar artigos");
 			System.out.println("0 - Sair");
-			
-			opcao = uiUtils.readInteger("Opcao", 0, 3); 
-			
-			if (opcao == 1) {
+			this.opcao = uiUtils.readInteger("Opcao", 0, 3); 
+
+			switch (this.opcao) {
+			case 1:
+				this.acaoAlocar = new acaoAlocar(this.operacoes);
+				System.out.println("Executando alocação.");
 				this.acaoAlocar.executar();
-			} else if (opcao == 2) {
+				break;
+			case 2:
+				this.acaoRevisao = new acaoRevisao(this.operacoes);
 				this.acaoRevisao.executar();
-			}  else if (opcao == 3) {
+				break;
+			case 3:
+				this.acaoListagem = new acaoListagem(this.operacoes);
 				this.acaoListagem.executar();
-			}
-		} while (opcao != 0);
+				break;
+			case 0:
+				System.out.println("Sistema encerrado.");
+				break;
+			default:
+				System.out.println("Opção inválida");
+				break;
+			}				
+		} while (this.opcao != 0);
 	}
-	
 }
