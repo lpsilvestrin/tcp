@@ -52,9 +52,13 @@ public class Artigo {
 		return this.topicopesquisa;
 	}
 
-	public void addRevisao(int revisorId, int nota) {
-		Revisao revisao = new Revisao(getRevisor(revisorId), nota);
-		revisoes.add(revisao);
+	public void addRevisao(int revisorId, int nota) throws ArticleException {
+		if (ehRevisor(revisorId)) {
+			Revisao revisao = new Revisao(getRevisor(revisorId), nota);
+			revisoes.add(revisao);
+		} else {
+			throw new ArticleException();
+		}
 	}
 
 	public boolean verificarAceitacao() {
@@ -70,19 +74,10 @@ public class Artigo {
 	public void addRevisor(Revisor revisor) {
 		this.revisores.add(revisor);
 	}
-
-	public boolean ehRevisor(MembroDeComite revisor) {
-		for (Revisor r : this.revisores) {
-			if (r.getId() == revisor.getId()) {
-				return true;
-			}
-		}
-		return false;
-	}
 	
-	public boolean ehRevisor(Revisor revisor) {
+	public boolean ehRevisor(int revisorId) {
 		for (Revisor r : this.revisores) {
-			if (r.getId() == revisor.getId()) {
+			if (r.getId() == revisorId){
 				return true;
 			}
 		}
