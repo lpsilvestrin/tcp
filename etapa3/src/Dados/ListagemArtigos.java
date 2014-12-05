@@ -2,6 +2,7 @@ package Dados;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
@@ -28,29 +29,32 @@ public class ListagemArtigos {
 
 	public void alocarRevisores(ListaDeMembros revisores, int numrevisores) {
 		this.numrevisores = numrevisores;
-		
+		// DEBUG LINE
+		System.out.println(this.artigos.get(0).getTitulo());
+		/////
 		this.log.append("Iniciando alocação.\n");
 		for (Artigo artigo : this.artigos) {
 			
 			if(artigo.getNumRevisores() < numrevisores) {
 				Pesquisador autor = artigo.getAutor();
 				ListaDeMembros revisoresAptos = new ListaDeMembros(revisores);
-				
-				for (MembroDeComite membro : revisoresAptos.getMembros()) {
-					
+				Iterator<MembroDeComite> it = revisoresAptos.getMembros().iterator();
+				while (it.hasNext()) {
+					MembroDeComite membro = it.next();
 					if (membro.getId() == autor.getId()) {
-						revisoresAptos.excluirMembro(membro);	
+						it.remove();	
 					} else if (membro.getAfiliacao().equals(autor.getAfiliacao())) {
-						revisoresAptos.excluirMembro(membro);
+						it.remove();
 					} else if(!membro.possuiTopicoPesquisa(artigo.getTopicoPesquisa())) {
-						revisoresAptos.excluirMembro(membro);
+						it.remove();
 					} else if (artigo.ehRevisor(membro)){
-						revisoresAptos.excluirMembro(membro);
+						it.remove();
 					}
 				}
 				
 				revisoresAptos.ordenarNumeroDeArtigos();
 				
+				System.out.println(artigo.getNumRevisores() + " " + numrevisores);
 				while (artigo.getNumRevisores() < numrevisores) {
 					MembroDeComite revisor = revisoresAptos.getPrimeiroMembro();
 					Revisor revisorSelecionado = new Revisor(revisor);
