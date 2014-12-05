@@ -61,7 +61,6 @@ public class UIUtils {
 	public Integer readInteger(String field, int min, int max) {
 		Integer value = null;
 		while (value == null) {
-			System.out.println(field + ": ");
 			value = readInteger(field);
 			if (value < min || value > max) {
 				value = null;
