@@ -186,7 +186,7 @@ public class BancoDeDados {
 			Conferencia fse = new Conferencia("FSE");
 			for (int i = 1; i < 8; i++) {
 				Pesquisador pesq = this.pesquisadores.get(i - 1);
-				icse.addMembroComite(new MembroDeComite(pesq));
+				fse.addMembroComite(new MembroDeComite(pesq));
 			}
 			fse.setNumRevisores(2);
 			storeConferencia(fse);
