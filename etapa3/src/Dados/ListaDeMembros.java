@@ -36,6 +36,10 @@ public class ListaDeMembros {
 		return membrosDeComite.get(0);
 	}
 	
+	public boolean isEmpty() {
+		return this.membrosDeComite.isEmpty();
+	}
+	
 	private class ComparadorMembrosDeComite implements Comparator<MembroDeComite> {
 		@Override
 		public int compare(MembroDeComite membro1, MembroDeComite membro2) {

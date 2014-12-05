@@ -61,15 +61,16 @@ public class ListagemArtigos {
 				revisoresAptos.ordenarNumeroDeArtigos();
 				System.out.println(artigo.getTitulo());
 				System.out.println(artigo.getNumRevisores() + " " + numrevisores);
-				System.out.println(artigo.getRevisores().get(0).getNome());
-				while (artigo.getNumRevisores() < numrevisores) {
+		//		System.out.println(artigo.getRevisores().get(0).getNome());
+				while (artigo.getNumRevisores() < numrevisores &&
+					   !revisoresAptos.isEmpty()) {
 					MembroDeComite revisor = revisoresAptos.getPrimeiroMembro();
 					Revisor revisorSelecionado = new Revisor(revisor);
 					revisorSelecionado.addQtdArtigosAlocados();
 					artigo.addRevisor(revisorSelecionado);
 					
 					revisoresAptos.excluirMembro(revisor);
-					this.log.append("Artigo id " + artigo.getId() + " alocado ao revisor id " + revisor.getId());
+					this.log.append("Artigo id " + artigo.getId() + " alocado ao revisor id " + revisor.getId() + "\n");
 				}
 			}
 		}
