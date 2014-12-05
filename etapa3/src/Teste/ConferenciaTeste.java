@@ -5,25 +5,31 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import Dados.*;
 
 public class ConferenciaTeste {
-
+	private MembroDeComite membroDeComite1;
+	private Afiliacao afiliacao1;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
 
 	@Before
 	public void setUp() throws Exception {
+		afiliacao1 = new Afiliacao("afiliacao")
+		membroDeComite1 = new MembroDeComite(0, "nome", afiliacao1);
 	}
 
 	@Test
 	public void testConferencia() {
-		fail("Not yet implemented");
+		Conferencia c = new Conferencia("SIGLA");
+		assertNotNull(c);
 	}
 
 	@Test
 	public void testAddMembroComite() {
-		fail("Not yet implemented");
+		Conferencia c = new Conferencia("SIGLA");
+		c.addMembroComite(membroDeComite1);
 	}
 
 	@Test
