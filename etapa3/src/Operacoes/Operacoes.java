@@ -32,7 +32,6 @@ public class Operacoes {
 	public ArrayList<Artigo> getListaArtigos(String siglaConf) {
 		Conferencia conf = this.bancoDeDados.getConferencia(siglaConf);
 		ListagemArtigos alocacao = conf.getAlocacao();
-		
 		return alocacao.getArtigos();
 	}
 	

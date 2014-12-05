@@ -1,5 +1,6 @@
 package Main;
 
+import Dados.BancoDeDados;
 import Interface.InterfacePrincipal;
 import Operacoes.Operacoes;
 
