@@ -21,7 +21,7 @@ public class Operacoes {
 	private BancoDeDados bancoDeDados;
 
 	public Operacoes() {
-		bancoDeDados = new BancoDeDados();
+		this.bancoDeDados = new BancoDeDados();
 	}
 	
 	public void criarAlocacao(String sigla, int numrevisores) {
