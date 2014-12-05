@@ -95,11 +95,26 @@ public class ArtigoTeste {
 	public void testVerificarAceitacao() {
 		Artigo a1;
 		a1 = new Artigo(1, "artigo1", pesq, "CONF", topico);
+		try {
+			a1.addRevisao(revisor.getId(), 2);
+			assertTrue("nota de não revisor aceita", false);
+		} catch (ArticleException e) {
+		}
 		a1.addRevisor(revisor);
 		try {
-			a1.addRevisao(2, 4);
+			a1.addRevisao(revisor.getId(), 4);
+			assertTrue("nota maior que 3 foi aceita", false);
 		} catch (ArticleException e) {
-			assertTrue("addRevisao", false);
+		}
+		try {
+			a1.addRevisao(revisor.getId(), -4);
+			assertTrue("nota menor que -3 foi aceita", false);
+		} catch (ArticleException e) {
+		}
+		try {
+			a1.addRevisao(revisor.getId(), 2);
+		} catch (ArticleException e) {
+			assertTrue("nota 2 deu errado", false);
 		}
 		assertTrue(a1.verificarAceitacao());
 	}
