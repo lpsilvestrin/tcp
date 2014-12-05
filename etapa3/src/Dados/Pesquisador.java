@@ -23,6 +23,13 @@ public class Pesquisador {
 		this.afiliacao = afiliacao;
 		this.topicospesquisa = new ArrayList<TopicoDePesquisa>();
 	}
+	
+	public Pesquisador(int id, String nome, Afiliacao afiliacao, ArrayList<TopicoDePesquisa> topicos) {
+		this.id = id;
+		this.nome = nome;
+		this.afiliacao = afiliacao;
+		this.topicospesquisa = topicos;
+	}
 
 	public void addTopicoPesquisa(TopicoDePesquisa topicopesquisa) {
 		this.topicospesquisa.add(topicopesquisa);
