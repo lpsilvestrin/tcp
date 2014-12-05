@@ -1,4 +1,6 @@
 package Interface;
+import java.io.BufferedReader;                                                  
+import java.io.InputStreamReader;
 import Operacoes.Operacoes;
 import Operacoes.acaoAlocar;
 import Operacoes.acaoListagem;
@@ -14,10 +16,13 @@ public class InterfacePrincipal {
 
 	private acaoRevisao acaoRevisao;
 	
-	private int opcao;
+	private Integer opcao;
 	
 	public InterfacePrincipal(Operacoes operacoes) {
 		this.operacoes = operacoes;
+		this.acaoAlocar = new acaoAlocar(operacoes);
+		this.acaoListagem = new acaoListagem(operacoes);
+		this.acaoRevisao = new acaoRevisao(operacoes);
 		this.opcao = 0;
 	}
 	
@@ -30,9 +35,29 @@ public class InterfacePrincipal {
 			System.out.println("2 - Fazer revisão");
 			System.out.println("3 - Listar artigos");
 			System.out.println("0 - Sair");
-			
-			opcao = uiUtils.readInteger("Opcao", 0, 3); 
-		} while (opcao != 0);
+			this.opcao = uiUtils.readInteger("Opcao", 0, 3); 
+
+			switch (this.opcao) {
+			case 1:
+				this.acaoAlocar = new acaoAlocar(this.operacoes);
+				System.out.println("Executando alocação.");
+				this.acaoAlocar.executar();
+				break;
+			case 2:
+				this.acaoRevisao = new acaoRevisao(this.operacoes);
+				this.acaoRevisao.executar();
+				break;
+			case 3:
+				this.acaoListagem = new acaoListagem(this.operacoes);
+				this.acaoListagem.executar();
+				break;
+			case 0:
+				System.out.println("Sistema encerrado.");
+				break;
+			default:
+				System.out.println("Opção inválida");
+				break;
+			}				
+		} while (this.opcao != 0);
 	}
-	
 }

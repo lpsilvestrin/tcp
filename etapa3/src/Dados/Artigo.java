@@ -80,6 +80,15 @@ public class Artigo {
 		return false;
 	}
 	
+	public boolean ehRevisor(Revisor revisor) {
+		for (Revisor r : this.revisores) {
+			if (r.getId() == revisor.getId()) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public double getMedia() {
 		float soma = 0;
 		float cont = 0;

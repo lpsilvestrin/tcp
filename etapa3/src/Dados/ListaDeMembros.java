@@ -13,7 +13,7 @@ public class ListaDeMembros {
 	}
 
 	public ListaDeMembros(ListaDeMembros lista) {
-		this.membrosDeComite = lista.getMembros();
+		this.membrosDeComite = new ArrayList<MembroDeComite>(lista.getMembros());
 	}
 	
 	public ArrayList<MembroDeComite> getMembros() {

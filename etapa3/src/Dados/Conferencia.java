@@ -68,4 +68,12 @@ public class Conferencia {
 		return this.alocacaoRealizada;
 	}
 	
+	public void setNumRevisores(int num) {
+		this.getAlocacao().setNumRevisores(num);
+	}
+	
+	public int getNumRevisores() {
+		return this.getAlocacao().getNumRevisores();
+	}
+	
 }
