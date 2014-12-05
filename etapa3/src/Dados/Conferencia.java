@@ -63,6 +63,11 @@ public class Conferencia {
 		this.alocacaoRealizada = true;
 		
 	}
+	
+	/* para inicialização hard-coded na Base de Dados */
+	public void setAlocacaoRealizada() {
+		this.alocacaoRealizada = true;
+	}
 
 	public boolean alocacaoRealizada() {
 		return this.alocacaoRealizada;

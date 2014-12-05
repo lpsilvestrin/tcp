@@ -196,6 +196,7 @@ public class BancoDeDados {
 				sbes.addMembroComite(new MembroDeComite(pesq));
 			}
 			sbes.setNumRevisores(2);
+			sbes.setAlocacaoRealizada();
 			storeConferencia(sbes);
 			
 			int artId = 0;
