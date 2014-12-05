@@ -13,6 +13,7 @@ public class ArtigoTeste {
 	private Pesquisador pesq;
 	private TopicoDePesquisa topico;
 	private Revisor revisor;
+	private Conferencia conf;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
