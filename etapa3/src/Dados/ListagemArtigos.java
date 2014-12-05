@@ -30,7 +30,7 @@ public class ListagemArtigos {
 		this.numrevisores = numrevisores;
 		
 		this.log.append("Iniciando alocação.\n");
-		this.ordenarPorId();
+		this.ordenarId();
 		for (Artigo artigo : this.artigos) {
 
 			if(artigo.getNumRevisores() < numrevisores) {
@@ -132,7 +132,7 @@ public class ListagemArtigos {
 		return this.artigos.isEmpty();
 	}
 	
-	public void ordenarPorId() {
+	public void ordenarId() {
 		Collections.sort(this.artigos, new ComparadorArtigoId());
 	}
 	

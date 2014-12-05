@@ -32,7 +32,7 @@ public class ListaDeMembros {
 		Collections.sort(this.membrosDeComite, new ComparadorMembrosQtdArtigos());
 	}
 
-	public void ordenarPorId() {
+	public void ordenarId() {
 		Collections.sort(this.membrosDeComite, new ComparadorMembrosId());
 	}
 	
