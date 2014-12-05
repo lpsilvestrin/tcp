@@ -24,9 +24,6 @@ public class ListagemArtigosTeste {
 	private Pesquisador p1;
 	private Pesquisador p2;
 	private Pesquisador p3;
-	private Revisor r1;
-	private Revisor r2;
-	private Revisor r3;
 	private Conferencia conf1;
 	private Conferencia conf2;
 	
@@ -120,7 +117,8 @@ public class ListagemArtigosTeste {
 
 	@Test
 	public void testSetNumRevisores() {
-		fail("Not yet implemented");
+		ListagemArtigos l1 = new ListagemArtigos();
+		l1.setNumRevisores(3);
 	}
 
 	@Test

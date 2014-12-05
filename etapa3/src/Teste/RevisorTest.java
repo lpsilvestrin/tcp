@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import Dados.*;
+
 public class RevisorTest {
 
 	@BeforeClass
@@ -14,6 +16,8 @@ public class RevisorTest {
 
 	@Before
 	public void setUp() throws Exception {
+		Revisor revisor = new Revisor(new MembroDeComite(1, "revisor", new Afiliacao("UFRGS")));
+		assertNotNull(revisor);
 	}
 
 	@Test

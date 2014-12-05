@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import Dados.*;
+
 public class ListaDeMembrosTeste {
 
 	@BeforeClass
@@ -18,7 +20,8 @@ public class ListaDeMembrosTeste {
 
 	@Test
 	public void testListaDeMembros() {
-		fail("Not yet implemented");
+		ListaDeMembros l = new ListaDeMembros();
+		assertNotNull(l);
 	}
 
 	@Test
