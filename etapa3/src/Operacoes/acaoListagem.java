@@ -33,7 +33,7 @@ public class acaoListagem {
 				System.out.println(artigo);
 			}
 			
-			System.out.println("Aritos rejeitados");
+			System.out.println("Artigos rejeitados");
 			for (String artigo : rejeitados) {
 				System.out.println(artigo);
 			}
