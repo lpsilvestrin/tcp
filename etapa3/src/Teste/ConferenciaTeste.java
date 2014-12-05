@@ -4,10 +4,10 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
 import Dados.*;
 
 public class ConferenciaTeste {
@@ -59,7 +59,8 @@ public class ConferenciaTeste {
 		Conferencia c = new Conferencia("SIGLA");
 		ArrayList<Artigo> listaArtigos;
 		listaArtigos = c.getArtigosAceitos();
-		assertFalse(listaArtigos.isEmpty());
+		assertTrue(listaArtigos.isEmpty());
+		assertThat(listaArtigos.size(), equalTo(0));
 	}
 
 	@Test

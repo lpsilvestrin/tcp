@@ -54,8 +54,12 @@ public class Artigo {
 
 	public void addRevisao(int revisorId, int nota) throws ArticleException {
 		if (ehRevisor(revisorId)) {
-			Revisao revisao = new Revisao(getRevisor(revisorId), nota);
-			revisoes.add(revisao);
+			if (nota <= 3 && nota >= -3) {
+				Revisao revisao = new Revisao(getRevisor(revisorId), nota);
+				revisoes.add(revisao);
+			} else {
+				throw new ArticleException("Nota inválida");
+			}
 		} else {
 			throw new ArticleException("Esse pesquisador não é revisor desse artigo");
 		}
