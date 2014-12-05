@@ -181,18 +181,21 @@ public class BancoDeDados {
 				Pesquisador pesq = this.pesquisadores.get(i - 1);
 				icse.addMembroComite(new MembroDeComite(pesq));
 			}
+			icse.setNumRevisores(2);
 			storeConferencia(icse);
 			Conferencia fse = new Conferencia("FSE");
 			for (int i = 1; i < 8; i++) {
 				Pesquisador pesq = this.pesquisadores.get(i - 1);
 				icse.addMembroComite(new MembroDeComite(pesq));
 			}
+			fse.setNumRevisores(2);
 			storeConferencia(fse);
 			Conferencia sbes = new Conferencia("SBES");
 			for (int i = 4; i < 11; i++) {
 				Pesquisador pesq = this.pesquisadores.get(i - 1);
 				sbes.addMembroComite(new MembroDeComite(pesq));
 			}
+			sbes.setNumRevisores(2);
 			storeConferencia(sbes);
 			
 			int artId = 0;
