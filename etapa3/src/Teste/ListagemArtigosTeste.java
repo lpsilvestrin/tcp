@@ -96,7 +96,7 @@ public class ListagemArtigosTeste {
 		l1.addArtigo(artigo3);
 		assertEquals(0, l1.getNumRevisores());
 		l1.alocarRevisores(lm, 2);
-		assertEquals(3, l1.getNumRevisores());
+		assertEquals(2, l1.getNumRevisores());
 	}
 
 	@Test

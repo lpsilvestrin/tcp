@@ -51,7 +51,7 @@ public class ListagemArtigos {
 				}
 				
 				revisoresAptos.ordenarNumeroDeArtigos();
-				revisoresAptos.ordenarPorId();
+				revisoresAptos.ordenarId();
 				while (artigo.getNumRevisores() < numrevisores &&
 					   !revisoresAptos.isEmpty()) {
 					MembroDeComite revisor = revisoresAptos.getPrimeiroMembro();
