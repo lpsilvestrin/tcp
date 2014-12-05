@@ -11,7 +11,6 @@ import Dados.*;
 public class ArtigoTeste {
 	private Afiliacao afil;
 	private Pesquisador pesq;
-	private Conferencia conf;
 	private TopicoDePesquisa topico;
 	private Revisor revisor;
 
