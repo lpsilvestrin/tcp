@@ -86,7 +86,10 @@ public class ListagemArtigos {
 	}
 	
 	public Artigo getArtigoMenorID() {
-		return this.artigos.get(0);
+		if (this.isEmpty())
+			return null;
+		else
+			return this.artigos.get(0);
 	}
 	
 	public boolean verificaRevisoesPendentes() {
@@ -120,5 +123,9 @@ public class ListagemArtigos {
 			}
 		}
 		return rejeitados;
+	}
+	
+	public boolean isEmpty() {
+		return this.artigos.isEmpty();
 	}
 }
