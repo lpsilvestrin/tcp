@@ -18,6 +18,9 @@ public class InterfacePrincipal {
 	
 	public InterfacePrincipal(Operacoes operacoes) {
 		this.operacoes = operacoes;
+		this.acaoAlocar = new acaoAlocar(operacoes);
+		this.acaoListagem = new acaoListagem(operacoes);
+		this.acaoRevisao = new acaoRevisao(operacoes);
 		this.opcao = 0;
 	}
 	
@@ -32,6 +35,14 @@ public class InterfacePrincipal {
 			System.out.println("0 - Sair");
 			
 			opcao = uiUtils.readInteger("Opcao", 0, 3); 
+			
+			if (opcao == 1) {
+				this.acaoAlocar.executar();
+			} else if (opcao == 2) {
+				this.acaoRevisao.executar();
+			}  else if (opcao == 3) {
+				this.acaoListagem.executar();
+			}
 		} while (opcao != 0);
 	}
 	
