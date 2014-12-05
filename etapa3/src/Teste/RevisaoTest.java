@@ -48,11 +48,4 @@ public class RevisaoTest {
 		assertEquals(-2, r.getNota());
 	}
 
-	@Test
-	public void testVerificarRecebida() {
-		Revisao r;
-		r = new Revisao(revisor, 2);
-		assertFalse(r.verificarRecebida());
-	}
-
 }
