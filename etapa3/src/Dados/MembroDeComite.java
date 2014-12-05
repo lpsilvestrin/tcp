@@ -6,6 +6,11 @@ public class MembroDeComite extends Pesquisador {
 
 	private int qtdArtigosAlocados;
 	
+	public MembroDeComite(int id, String nome, Afiliacao afiliacao) {
+		super(id, nome, afiliacao);
+		this.qtdArtigosAlocados = 0;
+	}
+	
 	public MembroDeComite(int id, String nome, Afiliacao afiliacao, ArrayList<TopicoDePesquisa> topicos) {
 		super(id, nome, afiliacao, topicos);
 		this.qtdArtigosAlocados = 0;
