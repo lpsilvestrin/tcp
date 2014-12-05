@@ -3,6 +3,7 @@ package Operacoes;
 import java.util.ArrayList;
 
 import Dados.ArticleException;
+import Dados.InvalidConferenceException;
 import Interface.UIUtils;
 
 public class acaoRevisao {
@@ -21,9 +22,18 @@ public class acaoRevisao {
 		for (String sigla : conferencias) {
 			System.out.println(sigla);
 		}
-		
-		String siglaSelecionada = uiUtils.readString("Conferência");
-		ArrayList<String> artigos = this.operacoes.getListaArtigosString(siglaSelecionada);
+		String siglaSelecionada = null;
+		ArrayList<String> artigos = null;
+		while (siglaSelecionada == null) {
+			try {
+				
+				siglaSelecionada = uiUtils.readString("Conferência");
+				artigos = this.operacoes.getListaArtigosString(siglaSelecionada);
+			} catch (InvalidConferenceException e) {
+				System.out.println(e.getMessage());
+				siglaSelecionada = null;
+			}
+		}
 		for (String artigoString : artigos) {
 			System.out.println(artigoString);
 		}

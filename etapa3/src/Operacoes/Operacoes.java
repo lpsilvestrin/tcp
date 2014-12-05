@@ -8,6 +8,7 @@ import Dados.ArticleException;
 import Dados.Artigo;
 import Dados.BancoDeDados;
 import Dados.Conferencia;
+import Dados.InvalidConferenceException;
 import Dados.ListagemArtigos;
 import Dados.MembroDeComite;
 import Dados.Pesquisador;
@@ -25,9 +26,13 @@ public class Operacoes {
 		this.bancoDeDados = new BancoDeDados();
 	}
 	
-	public void criarAlocacao(String sigla, int numrevisores) {
+	public void criarAlocacao(String sigla, int numrevisores) throws InvalidConferenceException {
 		Conferencia conferencia = bancoDeDados.getConferencia(sigla);
-		conferencia.alocarRevisores(numrevisores);
+		if (conferencia != null) {
+			conferencia.alocarRevisores(numrevisores);
+		} else {
+			throw new InvalidConferenceException("Sigla inválida");
+		}
 	}
 
 	public ArrayList<Artigo> getListaArtigos(String siglaConf) {
@@ -36,14 +41,18 @@ public class Operacoes {
 		return alocacao.getArtigos();
 	}
 	
-	public ArrayList<String> getListaArtigosString(String siglaConf) {
+	public ArrayList<String> getListaArtigosString(String siglaConf) throws InvalidConferenceException {
 		Conferencia conf = this.bancoDeDados.getConferencia(siglaConf);
-		ListagemArtigos alocacao = conf.getAlocacao();
-		ArrayList<String> artigos = new ArrayList<String>();
-		for (Artigo a : alocacao.getArtigos()) {
-			artigos.add(a.getId() + " - " + a.getTitulo());
+		if (conf != null) {
+			ListagemArtigos alocacao = conf.getAlocacao();
+			ArrayList<String> artigos = new ArrayList<String>();
+			for (Artigo a : alocacao.getArtigos()) {
+				artigos.add(a.getId() + " - " + a.getTitulo());
+			}
+			return artigos;
+		} else {
+			throw new InvalidConferenceException("Sigla inválida");
 		}
-		return artigos;
 	}
 
 	public ArrayList<String> getListaArtigosAceitos(String siglaConf) {
@@ -124,9 +133,13 @@ public class Operacoes {
 		return conferencia.getAlocacao().getLog();
 	}
 	
-	public boolean verificaRevisoesPendentes(String siglaConf) {
+	public boolean verificaRevisoesPendentes(String siglaConf) throws InvalidConferenceException {
 		Conferencia conferencia = this.bancoDeDados.getConferencia(siglaConf);
-		return conferencia.getAlocacao().verificaRevisoesPendentes();
+		if (conferencia != null) {
+			return conferencia.getAlocacao().verificaRevisoesPendentes();
+		} else {
+			throw new InvalidConferenceException("Sigla inválida");
+		}
 	}
 	
 	private class ComparadorArtigoPorMediaCresc implements Comparator<Artigo> {

@@ -2,6 +2,7 @@ package Operacoes;
 
 import java.util.ArrayList;
 
+import Dados.InvalidConferenceException;
 import Interface.UIUtils;
 
 public class acaoListagem {
@@ -19,9 +20,17 @@ public class acaoListagem {
 		for (String sigla : conferencias) {
 			System.out.println(sigla);
 		}
-		
-		String siglaConf = uiUtils.readString("Conferência");
-		boolean pendentes = this.operacoes.verificaRevisoesPendentes(siglaConf);
+		String siglaConf = null;
+		boolean pendentes = false;
+		while (siglaConf == null) {
+			siglaConf = uiUtils.readString("Conferência");
+			try {
+				pendentes = this.operacoes.verificaRevisoesPendentes(siglaConf);
+			} catch (InvalidConferenceException e) {
+				System.out.println(e.getMessage());
+				siglaConf = null;				
+			}
+		}
 		if(pendentes) {
 			System.out.println("Essa conferência possui revisões pendentes");
 		} else {

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Interface.UIUtils;
 
+import Dados.InvalidConferenceException;
 import Dados.ListagemArtigos;
 
 public class acaoAlocar {
@@ -24,7 +25,11 @@ public class acaoAlocar {
 		
 		String siglaSelecionada = uiUtils.readString("Conferência");
 		int numRevisores = uiUtils.readInteger("Número de revisores", 2, 5);
-		this.operacoes.criarAlocacao(siglaSelecionada, numRevisores);
+		try {
+			this.operacoes.criarAlocacao(siglaSelecionada, numRevisores);
+		} catch (InvalidConferenceException e) {
+			System.out.println(e.getMessage());
+		}
 		StringBuffer log = this.operacoes.getLog(siglaSelecionada);
 		
 		System.out.println(log);
