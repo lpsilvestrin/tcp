@@ -13,7 +13,6 @@ public class ArtigoTeste {
 	private Pesquisador pesq;
 	private TopicoDePesquisa topico;
 	private Revisor revisor;
-	private Conferencia conf;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -24,7 +23,6 @@ public class ArtigoTeste {
 		afil = new Afiliacao("afiliacao");
 		pesq = new Pesquisador(1, "Pesquisador", afil);
 		pesq.addTopicoPesquisa(topico);
-		conf = new Conferencia("CONF");
 		topico = new TopicoDePesquisa("topico");
 		revisor = new Revisor(new MembroDeComite(2, "revisor", afil));
 	}
