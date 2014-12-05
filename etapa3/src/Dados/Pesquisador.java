@@ -29,7 +29,13 @@ public class Pesquisador {
 	}
 
 	public boolean possuiTopicoPesquisa(TopicoDePesquisa topicopesquisa) {
-		return false;
+		boolean possui = false;
+		for (TopicoDePesquisa topico : this.topicospesquisa) {
+			if (topico.equals(topicopesquisa)) {
+				possui = true;
+			}
+		}
+		return possui;
 	}
 
 	public int getId() {
