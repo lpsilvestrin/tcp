@@ -82,7 +82,7 @@ public class ConferenciaTeste {
 	public void testAlocacaoRealizada() {
 		Conferencia c = new Conferencia("SIGLA");
 		c.alocarRevisores(2);
-		assertFalse(c.alocacaoRealizada());
+		assertTrue(c.alocacaoRealizada());
 	}
 
 }

@@ -9,13 +9,14 @@ import org.junit.Test;
 import Dados.*;
 
 public class ListaDeMembrosTeste {
-
+	private MembroDeComite membro;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
 
 	@Before
 	public void setUp() throws Exception {
+		membro = new MembroDeComite(1, "membro", new Afiliacao("ufrgs"));
 	}
 
 	@Test
@@ -26,12 +27,14 @@ public class ListaDeMembrosTeste {
 
 	@Test
 	public void testListaDeMembrosListaDeMembros() {
-		fail("Not yet implemented");
+		ListaDeMembros l = new ListaDeMembros(new ListaDeMembros());
+		assertNotNull(l);
 	}
 
 	@Test
 	public void testAddMembro() {
-		fail("Not yet implemented");
+		ListaDeMembros l = new ListaDeMembros();
+		l.addMembro(membro);
 	}
 
 	@Test
