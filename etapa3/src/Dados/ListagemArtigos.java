@@ -15,6 +15,7 @@ public class ListagemArtigos {
 
 	public ListagemArtigos() {
 		artigos = new ArrayList<Artigo>();
+		this.log = new StringBuffer();
 	}
 
 	public int getNumRevisores() {
@@ -27,8 +28,10 @@ public class ListagemArtigos {
 
 	public void alocarRevisores(ListaDeMembros revisores, int numrevisores) {
 		this.numrevisores = numrevisores;
+		
 		this.log.append("Iniciando alocação.\n");
 		for (Artigo artigo : this.artigos) {
+			
 			if(artigo.getNumRevisores() < numrevisores) {
 				Pesquisador autor = artigo.getAutor();
 				ListaDeMembros revisoresAptos = new ListaDeMembros(revisores);
@@ -55,11 +58,11 @@ public class ListagemArtigos {
 					artigo.addRevisor(revisorSelecionado);
 					
 					revisoresAptos.excluirMembro(revisor);
-					log.append("Artigo id " + artigo.getId() + " alocado ao revisor id " + revisor.getId());
+					this.log.append("Artigo id " + artigo.getId() + " alocado ao revisor id " + revisor.getId());
 				}
 			}
 		}
-		log.append("Fim da alocação.");
+		this.log.append("Fim da alocação.");
 	}
 
 	public ArrayList<Artigo> getArtigos() {
