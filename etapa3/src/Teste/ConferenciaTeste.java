@@ -2,9 +2,12 @@ package Teste;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
 import Dados.*;
 
 public class ConferenciaTeste {
@@ -16,7 +19,7 @@ public class ConferenciaTeste {
 
 	@Before
 	public void setUp() throws Exception {
-		afiliacao1 = new Afiliacao("afiliacao")
+		afiliacao1 = new Afiliacao("afiliacao");
 		membroDeComite1 = new MembroDeComite(0, "nome", afiliacao1);
 	}
 
@@ -34,32 +37,51 @@ public class ConferenciaTeste {
 
 	@Test
 	public void testGetSigla() {
-		fail("Not yet implemented");
+		Conferencia c;
+		c = new Conferencia("SIGLA");
+		assertEquals("SIGLA",c.getSigla());
+		c = new Conferencia("UFRGS");
+		assertEquals("UFRGS",c.getSigla());
 	}
 
 	@Test
 	public void testGetMembrosComite() {
-		fail("Not yet implemented");
+		ArrayList<MembroDeComite> membros;
+		Conferencia c = new Conferencia("SIGLA");
+		membros = c.getMembrosComite();
+		assertTrue(membros.isEmpty());
+		membros.add(membroDeComite1);
+		assertFalse(membros.isEmpty());
 	}
 
 	@Test
 	public void testGetArtigosAceitos() {
-		fail("Not yet implemented");
+		Conferencia c = new Conferencia("SIGLA");
+		ArrayList<Artigo> listaArtigos;
+		listaArtigos = c.getArtigosAceitos();
+		assertFalse(listaArtigos.isEmpty());
 	}
 
 	@Test
 	public void testGetMembroDeComite() {
-		fail("Not yet implemented");
+		Conferencia c = new Conferencia("SIGLA");
+		MembroDeComite m;
+		c.addMembroComite(membroDeComite1);
+		m = c.getMembroDeComite(0);
+		assertEquals(membroDeComite1, m);
 	}
 
 	@Test
 	public void testAlocarRevisores() {
-		fail("Not yet implemented");
+		Conferencia c = new Conferencia("SIGLA");
+		c.alocarRevisores(2);
 	}
 
 	@Test
 	public void testAlocacaoRealizada() {
-		fail("Not yet implemented");
+		Conferencia c = new Conferencia("SIGLA");
+		c.alocarRevisores(2);
+		assertFalse(c.alocacaoRealizada());
 	}
 
 }
