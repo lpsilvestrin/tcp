@@ -29,9 +29,13 @@ public class ListaDeMembros {
 	}
 
 	public void ordenarNumeroDeArtigos() {
-		Collections.sort(this.membrosDeComite, new ComparadorMembrosDeComite());
+		Collections.sort(this.membrosDeComite, new ComparadorMembrosQtdArtigos());
 	}
 
+	public void ordenarPorId() {
+		Collections.sort(this.membrosDeComite, new ComparadorMembrosId());
+	}
+	
 	public MembroDeComite getPrimeiroMembro() {
 		return membrosDeComite.get(0);
 	}
@@ -40,10 +44,17 @@ public class ListaDeMembros {
 		return this.membrosDeComite.isEmpty();
 	}
 	
-	private class ComparadorMembrosDeComite implements Comparator<MembroDeComite> {
+	private class ComparadorMembrosQtdArtigos implements Comparator<MembroDeComite> {
 		@Override
 		public int compare(MembroDeComite membro1, MembroDeComite membro2) {
 			return (membro1.getQtdArtigosAlocados() - membro2.getQtdArtigosAlocados());
+		}
+	}
+	
+	private class ComparadorMembrosId implements Comparator<MembroDeComite> {
+		@Override
+		public int compare(MembroDeComite membro1, MembroDeComite membro2) {
+			return (membro1.getId() - membro2.getId());
 		}
 	}
 }

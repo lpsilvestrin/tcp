@@ -1,6 +1,7 @@
 package Dados;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 
@@ -29,6 +30,7 @@ public class ListagemArtigos {
 		this.numrevisores = numrevisores;
 		
 		this.log.append("Iniciando alocação.\n");
+		this.ordenarPorId();
 		for (Artigo artigo : this.artigos) {
 
 			if(artigo.getNumRevisores() < numrevisores) {
@@ -49,6 +51,7 @@ public class ListagemArtigos {
 				}
 				
 				revisoresAptos.ordenarNumeroDeArtigos();
+				revisoresAptos.ordenarId();
 				while (artigo.getNumRevisores() < numrevisores &&
 					   !revisoresAptos.isEmpty()) {
 					MembroDeComite revisor = revisoresAptos.getPrimeiroMembro();
@@ -127,5 +130,16 @@ public class ListagemArtigos {
 	
 	public boolean isEmpty() {
 		return this.artigos.isEmpty();
+	}
+	
+	public void ordenarPorId() {
+		Collections.sort(this.artigos, new ComparadorArtigoId());
+	}
+	
+	private class ComparadorArtigoId implements Comparator<Artigo> {
+		@Override
+		public int compare(Artigo a1, Artigo a2) {
+			return (a1.getId() - a2.getId());
+		}
 	}
 }
