@@ -86,8 +86,13 @@ public class ArtigoTeste {
 		a1.addRevisor(revisor);
 		try {
 			a1.addRevisao(2, 4);
+			assertTrue(false);
 		} catch (ArticleException e) {
-			assertTrue("addRevisao", false);
+		}
+		try {
+			a1.addRevisao(2, 3);
+		} catch (ArticleException e) {
+			assertTrue(e.getMessage(), false);
 		}
 	}
 
@@ -125,11 +130,11 @@ public class ArtigoTeste {
 		a1 = new Artigo(1, "artigo1", pesq, "CONF", topico);
 		a1.addRevisor(revisor);
 		try {
-			a1.addRevisao(2, 4);
+			a1.addRevisao(2, 3);
 		} catch (ArticleException e) {
-			assertTrue("addRevisao", false);
+			assertTrue(e.getMessage(), false);
 		}
-		assertEquals(4.0, a1.getMedia(),0.1);
+		assertEquals(3.0, a1.getMedia(),0.1);
 	}
 	
 	@Test
@@ -138,7 +143,7 @@ public class ArtigoTeste {
 		a1 = new Artigo(1, "artigo1", pesq, "CONF", topico);
 		a1.addRevisor(revisor);
 		try {
-			a1.addRevisao(2, 4);
+			a1.addRevisao(2, 2);
 		} catch (ArticleException e) {
 			assertTrue("addRevisao", false);
 		}
