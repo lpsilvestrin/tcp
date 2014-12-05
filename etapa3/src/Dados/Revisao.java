@@ -24,8 +24,4 @@ public class Revisao {
 		this.nota = nota;
 	}
 
-	public boolean verificarRecebida() {
-		return false;
-	}
-
 }
