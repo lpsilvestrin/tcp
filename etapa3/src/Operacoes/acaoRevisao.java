@@ -2,6 +2,7 @@ package Operacoes;
 
 import java.util.ArrayList;
 
+import Dados.ArticleException;
 import Interface.UIUtils;
 
 public class acaoRevisao {
@@ -35,7 +36,11 @@ public class acaoRevisao {
 		
 		int idRevisor = uiUtils.readInteger("Id do revisor");
 		int nota = uiUtils.readInteger("Nota", -3, 3);
-		this.operacoes.addRevisaoArtigo(idArtigo, idRevisor, nota);
+		try {
+			this.operacoes.addRevisaoArtigo(idArtigo, idRevisor, nota);
+		} catch (ArticleException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 }

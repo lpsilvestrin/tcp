@@ -57,7 +57,7 @@ public class Artigo {
 			Revisao revisao = new Revisao(getRevisor(revisorId), nota);
 			revisoes.add(revisao);
 		} else {
-			throw new ArticleException();
+			throw new ArticleException("Esse pesquisador não é revisor desse artigo");
 		}
 	}
 
