@@ -29,39 +29,28 @@ public class ListagemArtigos {
 
 	public void alocarRevisores(ListaDeMembros revisores, int numrevisores) {
 		this.numrevisores = numrevisores;
-		// DEBUG LINE
-		System.out.println(revisores.getMembros().size());
-		/////
+		
 		this.log.append("Iniciando alocação.\n");
 		for (Artigo artigo : this.artigos) {
 
-			System.out.println(artigo.getTitulo());
 			if(artigo.getNumRevisores() < numrevisores) {
 				Pesquisador autor = artigo.getAutor();
 				ListaDeMembros revisoresAptos = new ListaDeMembros(revisores);
 				Iterator<MembroDeComite> it = revisoresAptos.getMembros().iterator();
 				while (it.hasNext()) {
 					MembroDeComite membro = it.next();
-					System.out.println(membro.getNome());
 					if (membro.getId() == autor.getId()) {
 						it.remove();	
-						System.out.println("autor");
 					} else if (membro.getAfiliacao().equals(autor.getAfiliacao())) {
 						it.remove();
-						System.out.println("afiliacao");
 					} else if(!membro.possuiTopicoPesquisa(artigo.getTopicoPesquisa())) {
 						it.remove();
-						System.out.println("topico");
 					} else if (artigo.ehRevisor(membro)){
 						it.remove();
-						System.out.println("é revisor");
 					}
 				}
 				
 				revisoresAptos.ordenarNumeroDeArtigos();
-				System.out.println(artigo.getTitulo());
-				System.out.println(artigo.getNumRevisores() + " " + numrevisores);
-		//		System.out.println(artigo.getRevisores().get(0).getNome());
 				while (artigo.getNumRevisores() < numrevisores &&
 					   !revisoresAptos.isEmpty()) {
 					MembroDeComite revisor = revisoresAptos.getPrimeiroMembro();
