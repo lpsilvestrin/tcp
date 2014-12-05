@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import Dados.ArticleException;
 import Dados.Artigo;
 import Dados.BancoDeDados;
 import Dados.Conferencia;
@@ -93,9 +94,14 @@ public class Operacoes {
 		return naoAlocadas;
 	}
 
-	public void addRevisaoArtigo(int artigoId, int revisorId, int nota) {
-		Artigo artigo = listagemArtigos.getArtigo(artigoId);
-		artigo.addRevisao(revisorId, nota);
+	public void addRevisaoArtigo(int artigoId, int revisorId, int nota) throws ArticleException {
+		
+		Artigo artigo = this.bancoDeDados.getArtigo(artigoId);
+		try {
+			artigo.addRevisao(revisorId, nota);
+		} catch (ArticleException e){
+			throw e;
+		}
 	}
 
 	public ArrayList<String> getListaRevisoresString(int artigoId) {

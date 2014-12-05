@@ -43,7 +43,7 @@ public class ListagemArtigos {
 						it.remove();
 					} else if(!membro.possuiTopicoPesquisa(artigo.getTopicoPesquisa())) {
 						it.remove();
-					} else if (artigo.ehRevisor(membro)){
+					} else if (artigo.ehRevisor(membro.getId())){
 						it.remove();
 					}
 				}
