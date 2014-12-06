@@ -103,6 +103,7 @@ public class ListagemArtigosTeste {
 	public void testGetLog() {
 		ListagemArtigos l1 = new ListagemArtigos();
 		StringBuffer b = l1.getLog();
+		assertNotNull(b);
 	}
 
 	@Test

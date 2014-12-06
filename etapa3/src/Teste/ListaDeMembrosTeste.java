@@ -38,18 +38,40 @@ public class ListaDeMembrosTeste {
 	}
 
 	@Test
-	public void testExcluirMembro() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	public void testOrdenarNumeroDeArtigos() {
-		fail("Not yet implemented");
+		ListaDeMembros l = new ListaDeMembros();
+		MembroDeComite membro2 = new MembroDeComite(2, "membro2", new Afiliacao("UFSC"));
+		membro.addQtdArtigosAlocados();
+		l.addMembro(membro);
+		l.addMembro(membro2);
+		l.ordenarNumeroDeArtigos();
+		assertEquals(membro2, l.getPrimeiroMembro());
+	}
+	
+	@Test
+	public void testOrdenarId() {
+		ListaDeMembros l = new ListaDeMembros();
+		MembroDeComite membro2 = new MembroDeComite(2, "membro2", new Afiliacao("UFSC"));
+		l.addMembro(membro2);
+		l.addMembro(membro);
+		l.ordenarId();
+		assertEquals(membro, l.getPrimeiroMembro());
 	}
 
 	@Test
 	public void testGetPrimeiroMembro() {
-		fail("Not yet implemented");
+		ListaDeMembros l = new ListaDeMembros();
+		assertNull(l.getPrimeiroMembro());
+		l.addMembro(membro);
+		assertEquals(membro, l.getPrimeiroMembro());
+	}
+
+	@Test
+	public void testExcluirMembro() {
+		ListaDeMembros l = new ListaDeMembros();
+		l.addMembro(membro);
+		l.excluirMembro(membro);
+		assertNull(l.getPrimeiroMembro());
 	}
 
 }

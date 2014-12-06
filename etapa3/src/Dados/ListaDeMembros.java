@@ -37,7 +37,12 @@ public class ListaDeMembros {
 	}
 	
 	public MembroDeComite getPrimeiroMembro() {
-		return membrosDeComite.get(0);
+		if (membrosDeComite.isEmpty()) {
+			return null;
+		}
+		else {
+			return membrosDeComite.get(0);
+		}
 	}
 	
 	public boolean isEmpty() {
