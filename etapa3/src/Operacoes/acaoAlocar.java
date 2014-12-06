@@ -29,11 +29,10 @@ public class acaoAlocar {
 			this.operacoes.criarAlocacao(siglaSelecionada, numRevisores);
 		} catch (InvalidConferenceException e) {
 			System.out.println(e.getMessage());
+			StringBuffer log = this.operacoes.getLog(siglaSelecionada);
+			
+			System.out.println(log);
 		}
-		StringBuffer log = this.operacoes.getLog(siglaSelecionada);
-		
-		System.out.println(log);
-		
 	}
 
 }
