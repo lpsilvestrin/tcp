@@ -16,13 +16,12 @@ public class RevisorTest {
 
 	@Before
 	public void setUp() throws Exception {
-		Revisor revisor = new Revisor(new MembroDeComite(1, "revisor", new Afiliacao("UFRGS")));
-		assertNotNull(revisor);
 	}
 
 	@Test
 	public void testRevisor() {
-		fail("Not yet implemented");
+		Revisor revisor = new Revisor(new MembroDeComite(1, "revisor", new Afiliacao("UFRGS")));
+		assertNotNull(revisor);
 	}
 
 }

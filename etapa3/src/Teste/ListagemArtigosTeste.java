@@ -122,14 +122,4 @@ public class ListagemArtigosTeste {
 		l1.setNumRevisores(3);
 	}
 
-	@Test
-	public void testGetArtigoMenorID() {
-		ListagemArtigos l1 = new ListagemArtigos();
-		assertNull(l1.getArtigoMenorID());
-		l1.addArtigo(artigo2);
-		assertEquals(artigo2, l1.getArtigoMenorID());
-		l1.addArtigo(artigo1);
-		assertEquals(artigo1, l1.getArtigoMenorID());
-	}
-
 }

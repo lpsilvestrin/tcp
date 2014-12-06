@@ -88,13 +88,6 @@ public class ListagemArtigos {
 		this.numrevisores = numrevisores;
 	}
 	
-	public Artigo getArtigoMenorID() {
-		if (this.isEmpty())
-			return null;
-		else
-			return this.artigos.get(0);
-	}
-	
 	public boolean verificaRevisoesPendentes() {
 		
 		boolean pendentes = false;

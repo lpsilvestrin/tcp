@@ -96,12 +96,6 @@ public class PesquisadorTest {
 		p2 = new Pesquisador(2, "teste", afiliacao1);
 		assertFalse(p1.isEqual(p2));
 		assertFalse(p2.isEqual(p1));
-		p2 = new Pesquisador(0, "teste", afiliacao2);
-		assertFalse(p1.isEqual(p2));
-		assertFalse(p2.isEqual(p1));
-		p2 = new Pesquisador(0, "aaaa", afiliacao1);
-		assertFalse(p1.isEqual(p2));
-		assertFalse(p2.isEqual(p1));
 		p2 = new Pesquisador(3, "bbbbb", afiliacao2);
 		assertFalse(p1.isEqual(p2));
 		assertFalse(p2.isEqual(p1));
